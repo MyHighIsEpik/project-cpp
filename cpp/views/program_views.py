@@ -2,6 +2,7 @@ from datetime import datetime
 from flask import Blueprint, url_for, request, render_template, g, flash
 from werkzeug.utils import redirect
 from sqlalchemy import func
+from flask import send_file
 
 from .. import db
 from ..models import Cadinfo, Gameinfo, Illustinfo
@@ -79,3 +80,10 @@ def illust_detail(illust_id):
     illustinfo = Illustinfo.query.get_or_404(illust_id)
     return render_template('program/illust_detail.html', illustinfo=illustinfo)
 
+@bp.route('/download/')
+def download():
+    file_name = f"static/images/Front.png"
+    return send_file(file_name,
+                     mimetype='image/png',
+                     as_attachment=True,
+                     attachment_filename='CPP.png')
