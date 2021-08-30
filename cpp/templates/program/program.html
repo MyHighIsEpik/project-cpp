@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+    <h1> 프로그램 선택 페이지</h1>
+    <button type="button" class="btn btn-outline-info" onclick="">CAD</button>
+    <a href="{{ url_for('question._list') }}" class="btn btn-primary">QUESTION</a>
+    <a href="{{ url_for('program.cad') }}" class="btn btn-primary">CAD</a>
+    <a href="{{ url_for('program.game') }}" class="btn btn-primary">GAME</a>
+    <a href="{{ url_for('program.illust') }}" class="btn btn-primary">ILLUSTRATOR</a>
+
+{% endblock %}
