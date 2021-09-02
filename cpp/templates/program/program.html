@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
-    <h1> 프로그램 선택 페이지</h1>
+    <h1> 프로그램 선택 페이지<small>확인을 원하는 카테고리를 골라주세요.</small></h1>
     <a href="{{ url_for('question._list') }}" class="btn btn-secondary">QUESTION</a>
     <a href="{{ url_for('program.cad') }}" class="btn btn-info">CAD</a>
     <a href="{{ url_for('program.game') }}" class="btn btn-info">GAME</a>
     <a href="{{ url_for('program.illust') }}" class="btn btn-info">ILLUSTRATOR</a>
-    <a href="{{ url_for('program.download') }}" class="btn btn-light">사양 체크 프로그램 다운로드!</a>
+    <p>
+        <a href="{{ url_for('program.download') }}" class="btn btn-light">사양 체크 프로그램 다운로드!</a>
+    </p>
 
 {% endblock %}
