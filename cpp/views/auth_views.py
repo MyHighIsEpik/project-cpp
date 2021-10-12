@@ -6,6 +6,8 @@ from werkzeug.utils import redirect
 from cpp import db
 from cpp.forms import UserCreateForm, UserLoginForm, UserDeleteForm
 from cpp.models import User
+from cpp.forms import UserCreateForm, UserLoginForm
+from cpp.models import User
 from cpp.randomcode import giverandomcode
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
@@ -26,7 +28,6 @@ def signup():
         else:
             flash('이미 존재하는 사용자입니다.')
     return render_template('auth/signup.html', form=form)
-
 
 
 @bp.route('/login/', methods=('GET', 'POST'))
