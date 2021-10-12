@@ -4,7 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import redirect
 
 from cpp import db
-from cpp.forms import UserCreateForm, UserLoginForm
+from cpp.forms import UserCreateForm, UserLoginForm, UserDeleteForm
 from cpp.models import User
 from cpp.randomcode import giverandomcode
 
@@ -66,3 +66,20 @@ def login_required(view):
             return redirect(url_for('auth.login'))
         return view(**kwargs)
     return wrapped_view
+
+@bp.route('/mypage/')
+def mypage():
+    return render_template('auth/mypage.html')
+
+@bp.route('/mypage/quit/', methods=('GET', 'POST'))
+def quit():
+    form = UserDeleteForm()
+    if request.method == 'POST' and form.validate_on_submit():
+        user = User.query.filter_by(codenum=form.codenum.data).first()
+        if user:
+            db.session.delete(user)
+            db.session.commit()
+            return redirect(url_for('main.index'))
+        else:
+            flash('코드가 일치하지 않습니다.')
+    return render_template('auth/quit.html', form=form)

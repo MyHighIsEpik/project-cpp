@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
 <div class="container my-3">
@@ -7,15 +7,27 @@
         <div class="col-11">
             <div class="card">
                 <div class="card-body">
-                    <div class="card-text">1 </div>
-                    <div class="card-text">2</div>
-                    <div class="card-text">3</div>
-                    <div class="card-text">4</div>
-                    <div class="card-text">5</div>
+                    <div class="card-text">아이디 : {{ g.user.username }} </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-text">닉네임 : 닉네임 표시되는 곳 </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-text">Personal Code : {{ g.user.codenum }} (프로그램 작동에 사용됩니다!)</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="border-bottom py-2">내 PC 정보</h4>
+                    <div class="card-text">CPU : ~~~~</div>
                 </div>
             </div>
         </div>
     </div>
-    <a href="{{ url_for('question.create') }}" class="btn btn-secondary">회원탈퇴</a>
+    <a href="{{ url_for('auth.quit') }}" class="btn btn-secondary">회원탈퇴</a>
 </div>
 {% endblock %}
