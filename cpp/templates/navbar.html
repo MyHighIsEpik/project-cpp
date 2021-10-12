@@ -8,10 +8,9 @@
         {% if g.user %}
         <ul class="navbar-nav">
             <li class="nav-item ">
-                <a class="nav-link" href="{{ url_for('auth.logout') }}">{{ g.user.username }} (로그아웃)</a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="{{ url_for('auth.mypage') }}">마이페이지</a>
+                <a class="nav-link" href="{{ url_for('auth.logout') }}">{{ g.user.username }} {{ g.user.codenum }}(로그아웃)</a>
+                {% if programgui.input_codenum %}
+                <a>{{ programgui.input_codenum }}
             </li>
         </ul>
         {% else %}

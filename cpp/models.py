@@ -40,6 +40,14 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     codenum = db.Column(db.String(100), unique=True, nullable=False)
 
+class test(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    cpu = db.Column(db.String(100))
+    grapic = db.Column(db.String(100))
+    os = db.Column(db.String(100))
+    ram = db.Column(db.Integer)
+    disk = db.Column(db.Integer)
+
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)

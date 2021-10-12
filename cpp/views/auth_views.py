@@ -5,9 +5,9 @@ from werkzeug.utils import redirect
 
 from cpp import db
 from cpp.forms import UserCreateForm, UserLoginForm
-from cpp.models import User
+from cpp.models import User, Userinfo
 from cpp.randomcode import giverandomcode
-
+from cpp.programgui import input_codenum
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 
@@ -27,7 +27,8 @@ def signup():
             flash('이미 존재하는 사용자입니다.')
     return render_template('auth/signup.html', form=form)
 
-
+def input_codenumber():
+    userinfo = Userinfo(codenum=input_codenum.getText.input_codenum1)
 
 @bp.route('/login/', methods=('GET', 'POST'))
 def login():
