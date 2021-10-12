@@ -6,6 +6,7 @@ from werkzeug.utils import redirect
 from cpp import db
 from cpp.forms import UserCreateForm, UserLoginForm
 from cpp.models import User
+from cpp.randomcode import giverandomcode
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -18,13 +19,15 @@ def signup():
         if not user:
             user = User(username=form.username.data,
                         password=generate_password_hash(form.password1.data),
-                        email=form.email.data)
+                        email=form.email.data, codenum=giverandomcode.randomcode)
             db.session.add(user)
             db.session.commit()
             return redirect(url_for('main.index'))
         else:
             flash('이미 존재하는 사용자입니다.')
     return render_template('auth/signup.html', form=form)
+
+
 
 @bp.route('/login/', methods=('GET', 'POST'))
 def login():
@@ -63,7 +66,3 @@ def login_required(view):
             return redirect(url_for('auth.login'))
         return view(**kwargs)
     return wrapped_view
-
-@bp.route('/mypage/', methods=('GET', 'POST'))
-def mypage():
-    return render_template('auth/mypage.html')
