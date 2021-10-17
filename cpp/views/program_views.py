@@ -1,6 +1,4 @@
-from flask import Blueprint, url_for, request, render_template, g, flash
-from werkzeug.utils import redirect
-from sqlalchemy import func
+from flask import Blueprint, request, render_template
 from flask import send_file
 
 from .. import db
@@ -24,7 +22,7 @@ def cad():
     if kw:
         search = '%%{}%%'.format(kw)
         cad_list = cad_list \
-            .filter(Cadinfo.subject.ilike(search)   # 질문제목
+            .filter(Cadinfo.name.ilike(search)   # 질문제목
                     ) \
             .distinct()
     return render_template('program/cad_list.html', cad_list=cad_list, kw=kw)
@@ -46,7 +44,7 @@ def game():
     if kw:
         search = '%%{}%%'.format(kw)
         game_list = game_list \
-            .filter(Gameinfo.subject.ilike(search)   # 질문제목
+            .filter(Gameinfo.name.ilike(search)   # 질문제목
                     ) \
             .distinct()
     return render_template('program/game_list.html', game_list=game_list, kw=kw)
@@ -68,7 +66,7 @@ def illust():
     if kw:
         search = '%%{}%%'.format(kw)
         illust_list = illust_list \
-            .filter(Illustinfo.subject.ilike(search)   # 질문제목
+            .filter(Illustinfo.name.ilike(search)   # 질문제목
                     ) \
             .distinct()
     return render_template('program/illust_list.html', illust_list=illust_list, kw=kw)

@@ -13,7 +13,7 @@ bp = Blueprint('vote', __name__, url_prefix='/vote')
 def question(question_id):
     _question = Question.query.get_or_404(question_id)
     if g.user == _question.user:
-        flash('본인이 작성한 글은 추천할수 없습니다')
+        flash('본인이 작성한 글은 추천할 수 없습니다')
     else:
         _question.voter.append(g.user)
         db.session.commit()
@@ -25,7 +25,7 @@ def question(question_id):
 def answer(answer_id):
     _answer = Answer.query.get_or_404(answer_id)
     if g.user == _answer.user:
-        flash('본인이 작성한 글은 추천할수 없습니다')
+        flash('본인이 작성한 글은 추천할 수 없습니다')
     else:
         _answer.voter.append(g.user)
         db.session.commit()

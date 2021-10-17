@@ -5,9 +5,7 @@ from werkzeug.utils import redirect
 
 from cpp import db
 from cpp.forms import UserCreateForm, UserLoginForm, UserDeleteForm
-from cpp.models import User
-from cpp.forms import UserCreateForm, UserLoginForm
-from cpp.models import User
+from cpp.models import User, User_pcinfo
 from cpp.randomcode import giverandomcode
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
@@ -69,8 +67,11 @@ def login_required(view):
     return wrapped_view
 
 @bp.route('/mypage/')
+@login_required
 def mypage():
-    return render_template('auth/mypage.html')
+    user_pcinfo = User_pcinfo.query.filter_by(codenum=g.user.codenum).first()
+    return render_template('auth/mypage.html', user_pcinfo=user_pcinfo)
+
 
 @bp.route('/mypage/quit/', methods=('GET', 'POST'))
 def quit():

@@ -2,7 +2,7 @@
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
 <div class="container my-3">
-    <div class="row justify-content-between my-3">  <!-- 양쪽정렬 justify-content-between로 변경 -->
+    <div class="row justify-content-between my-3">
         <div class="col-2">
             <select class="form-control so">
                 <option value="recent" {% if so=='recent' %}selected{% endif %}>최신순</option>
@@ -43,7 +43,7 @@
                 <span class="text-danger small ml-2">{{ question.answer_set|length }}</span>
                 {% endif %}
             </td>
-            <td>{{ question.user.username }}</td>  <!-- 글쓴이 추가 -->
+            <td>{{ question.user.username }}</td>
             <td>{{ question.create_date|datetime }}</td>
         </tr>
         {% endfor %}

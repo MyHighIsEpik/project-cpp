@@ -4,7 +4,7 @@
     <form method="post" class="post-form">
         {{ form.csrf_token }}
         {% include "form_errors.html" %}
-        <h2 class="border-bottom py-2">탈퇴하시면 돌이킬수 없어, 알지?</h2>
+        <h2 class="border-bottom py-2">탈퇴하면 돌이킬수 없어, 알지?</h2>
         <div class="row my-3">
             <div class="form-group">
                 <label for="codenum">회원가입시 발급받은 개인 코드를 입력해주세요.</label>
@@ -16,4 +16,15 @@
     </form>
 </div>
 
+{% endblock %}
+{% block script %}
+<script type='text/javascript'>
+$(document).ready(function(){
+    $(".delete").on('click', function() {
+        if(confirm("정말로 탈퇴하시겠습니까?")) {
+            location.href = $(this).data('uri');
+        }
+    });
+});
+</script>
 {% endblock %}

@@ -38,15 +38,18 @@ class User(db.Model):
     username = db.Column(db.String(150), unique=True, nullable=False)
     password = db.Column(db.String(200), nullable=False)
     nickname = db.Column(db.String(120), unique=True, nullable=False)
-    codenum = db.Column(db.String(100), unique=True, nullable=False)
+    codenum = db.Column(db.String(45), unique=True, nullable=False)
 
-class test(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    cpu = db.Column(db.String(100))
-    grapic = db.Column(db.String(100))
-    os = db.Column(db.String(100))
-    ram = db.Column(db.Integer)
-    disk = db.Column(db.Integer)
+class User_pcinfo(db.Model):
+    codenum = db.Column(db.String(45), db.ForeignKey('user.codenum', ondelete='CASCADE'), primary_key=True)
+    cpu = db.Column(db.Text, nullable=True)
+    graphic = db.Column(db.Text, nullable=True)
+    os = db.Column(db.Text, nullable=True)
+    ram = db.Column(db.Integer, nullable=True)
+    cdisk = db.Column(db.Integer, nullable=True)
+    ddisk = db.Column(db.Integer, nullable=True)
+    edisk = db.Column(db.Integer, nullable=True)
+    fdisk = db.Column(db.Integer, nullable=True)
 
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -86,3 +89,15 @@ class Illustinfo(db.Model):
     osversion = db.Column(db.Text, nullable=True)
     videocard = db.Column(db.Text, nullable=True)
     diskspace = db.Column(db.Integer, nullable=True)
+
+class Cpulist(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    cpuname = db.Column(db.String(100), nullable=False)
+    score = db.Column(db.Integer, nullable=False)
+
+class Videocard(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    vcname = db.Column(db.String(100), nullable=False)
+    score = db.Column(db.Integer, nullable=False)
+
+
