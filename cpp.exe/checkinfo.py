@@ -29,7 +29,10 @@ def CPUInfo():
     datafile = datafile.decode()  # cpu_info = cpu 사양 페이지 출력 변수
     cpu_info = datafile.split('\r\r\n')[4]
     cpu_info = cpu_info.replace("Name=", "")  # cpu_info1 = cpu 사양비교 변수
-
+    if 'Core' in cpu_info or 'Atom' in cpu_info:  # case1 : 내 PC의 CPU가 intel core, atom일 떄
+        cpu_info = cpu_info.replace('(R)', '').replace('(TM)', '').replace('CPU ', '')  # 검색이 용이하도록 일부 문자열 제거
+    elif 'Xeon' in cpu_info or 'Celeron' in cpu_info or 'Pentium' in cpu_info:  # case1 : 내 PC의 CPU가 intel xeon, celeron, pentium일 떄
+        h = cpu_info.replace('(R)', '').replace('CPU ', '')  # 검색이 용이하도록 일부 문자열 제거
     return cpu_info
 
 
