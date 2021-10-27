@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+<div class="container my-3">
+    <h2 class="border-bottom py-2">{{ gameinfo.name }}</h2>
+    <div class="row my-3">
+        <div class="col-11">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-text">CPU : {{ gameinfo.cpu }}</div>
+                    <div class="card-text">RAM(GB) : {{ gameinfo.ram }}</div>
+                    <div class="card-text">OS : {{ gameinfo.osversion }}</div>
+                    <div class="card-text">VIDEOCARD : {{ gameinfo.videocard }}</div>
+                    <div class="card-text">FREE DISK SPACE(MB) : {{ gameinfo.diskspace }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

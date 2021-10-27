@@ -1,0 +1,4 @@
+.idea
+cpp.db
+*.pyc
+__pycache__

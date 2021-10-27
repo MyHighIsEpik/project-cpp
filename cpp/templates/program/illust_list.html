@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+<div class="container my-3">
+    <div class="row justify-content-end my-3">
+        <div class="col-4 input-group">
+            <input type="text" class="form-control kw" value="{{ kw or '' }}">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" id="btn_search">찾기</button>
+            </div>
+        </div>
+    </div>
+    <table class="table table-hover">
+        <thead>
+        <tr class="text-center thead-dark">
+            <th>번호</th>
+            <th style="width:50%">제목</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if illust_list %}
+        {% for illust in illust_list %}
+        <tr class="text-center">
+            <td>{{ loop.index }}</td>
+            <td class="text-left">
+                <a href="{{ url_for('program.illust_detail', illust_id=illust.id) }}">{{ illust.name }}</a>
+            </td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        </tbody>
+    </table>
+</div>
+
+<form id="searchForm" method="get" action="{{ url_for('program.illust') }}">
+    <input type="hidden" id="kw" name="kw" value="{{ kw or '' }}">
+</form>
+{% endblock %}
+{% block script %}
+<script type='text/javascript'>
+$(document).ready(function(){
+    $("#btn_search").on('click', function() {
+        $("#kw").val($(".kw").val());
+        $("#page").val(1);
+        $("#searchForm").submit();
+    });
+});
+</script>
+
+{% endblock %}

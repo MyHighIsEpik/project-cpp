@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CPP</title>
+</head>
+<body>
+    <h2 class="border-bottom py-2">{{ cadinfo.name }}</h2>
+    <div class="row my-3">
+        <div class="col-11">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-text">CPU : {{ cadinfo.cpu }}</div>
+                    <div class="card-text">RAM(GB) : {{ cadinfo.ram }}</div>
+                    <div class="card-text">OS : {{ cadinfo.osversion }}</div>
+                    <div class="card-text">VIDEOCARD : {{ cadinfo.videocard }}</div>
+                    <div class="card-text">FREE DISK SPACE(MB) : {{ cadinfo.diskspace }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
