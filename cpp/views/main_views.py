@@ -16,7 +16,7 @@ def hello_pybo():
 
 @bp.route('/')
 def index():
-    return redirect(url_for('program.program'))
+    return redirect(url_for('main.main'))
 
 
 @bp.route('/mainpage/', methods=('GET', 'POST'))
