@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 from flask import Blueprint, url_for, render_template, flash, request, session
 from werkzeug.utils import redirect
 from cpp.forms import UserLoginForm
 from werkzeug.security import check_password_hash
 from cpp.models import User
+=======
+from flask import Blueprint, url_for
+from werkzeug.utils import redirect
+>>>>>>> a7c1e72de55e4ae4b4394d8364d651d3cc88be1e
 
 bp = Blueprint('main', __name__, url_prefix='/')
 
@@ -15,6 +20,7 @@ def hello_pybo():
 @bp.route('/')
 def index():
     return redirect(url_for('program.program'))
+<<<<<<< HEAD
 
 
 @bp.route('/mainpage/', methods=('GET', 'POST'))
@@ -33,3 +39,5 @@ def main():
             return redirect(url_for('main.index'))
         flash(error)
     return render_template('auth/mainpage.html', form=form)
+=======
+>>>>>>> a7c1e72de55e4ae4b4394d8364d651d3cc88be1e
