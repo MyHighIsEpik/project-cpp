@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>CPP</title>
+
+</head>
+<body>
+    <div class="container my-3">
+        <h1>CPP</h1>
+    </div>
+    <div class="container float-lg-right">
+        <div class="col-lg-4">
+            <div class="jumbotron" style="padding-top: 20px">
+                <form method="post" class="loginform">
+                    <h3 style="text-align: center;">로그인</h3>
+                    {{ form.csrf_token }}
+                    {% include "form_errors.html" %}
+                    <div class="form-group">
+                        <label for="username">ID</label>
+                        <input type="text" placeholder="아이디를 입력하세요." class="form-control" name="username" id="username"
+                            value="{{ form.username.data or '' }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">PASSWORD</label>
+                        <input type="password" placeholder="비밀번호를 입력하세요." class="form-control" name="password" id="password"
+                            value="{{ form.password.data or '' }}">
+                    </div>
+                    <button id="btn-Yes" type="submit" class="btn btn-primary btn-block">로그인</button>
+                </form>
+            </div>
+        </div>
+    </div>
+<!-- jQuery JS -->
+<script src="{{ url_for('static', filename='jquery-3.6.0.min.js') }}"></script>
+<!-- Bootstrap JS -->
+<script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+<!-- 자바스크립트 Start -->
+<!-- 자바스크립트 End -->
+</body>
+</html>
