@@ -7,16 +7,35 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>CPP</title>
+    <style>
+        div.float-lg-left{
+            width: 30%;
+            height: 600px;
+            float: left;
+            margin-left: 250px;
+            background-image: url('../static/images/cppmain.png');
+            background-position: top left;
+            background-repeat: no-repeat;
+            background-size: 75%;
+        }
+        div.float-lg-right{
+            width: 50%;
+            float: left;
+        }
+    </style>
 
 </head>
 <body>
     <div class="container my-3">
         <h1>CPP</h1>
     </div>
+    <div class="container float-lg-left">
+            <h3>CPP(Compare PC with Program)</h3>
+    </div>
     <div class="container float-lg-right">
-        <div class="col-lg-4">
+        <div class="col-lg-7">
             <div class="jumbotron" style="padding-top: 20px">
-                <form method="post" class="loginform">
+                <form method="post" class="post-form">
                     <h3 style="text-align: center;">로그인</h3>
                     {{ form.csrf_token }}
                     {% include "form_errors.html" %}
