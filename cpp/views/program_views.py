@@ -84,3 +84,11 @@ def download():
                      mimetype='image/png',
                      as_attachment=True,
                      attachment_filename='CPP.png')
+
+@bp.route('/download1/')
+def download1():
+    file_name = f"static/exe/programgui.exe"
+    return send_file(file_name,
+                     mimetype='application/octet-stream',
+                     as_attachment=True,
+                     attachment_filename='CPP.exe')

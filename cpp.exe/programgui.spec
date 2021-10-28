@@ -4,8 +4,8 @@
 block_cipher = None
 
 
-a = Analysis(['programgui.py'],
-             pathex=['C:\\Users\\admin\\Desktop\\PythonWorkSpace\\flask\\projects\\myproject\\cpp.exe'],
+a = Analysis(['programgui.py', 'checkinfo.py'],
+             pathex=['G:\\projects\\myproject1\\cpp.exe'],
              binaries=[],
              datas=[],
              hiddenimports=[],
@@ -34,7 +34,6 @@ exe = EXE(pyz,
           upx_exclude=[],
           runtime_tmpdir=None,
           console=False,
-          disable_windowed_traceback=False,
           target_arch=None,
           codesign_identity=None,
           entitlements_file=None )
