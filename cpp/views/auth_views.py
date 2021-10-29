@@ -41,9 +41,9 @@ def login():
         if error is None:
             session.clear()
             session['user_id'] = user.id
-            return redirect(url_for('main.index'))
+            return redirect(url_for('program.program'))
         flash(error)
-    return render_template('program/program.html', form=form)
+    return render_template('auth/login.html', form=form)
 
 @bp.before_app_request
 def load_logged_in_user():
@@ -62,7 +62,7 @@ def login_required(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
         if g.user is None:
-            return redirect(url_for('auth.mainpage'))
+            return redirect(url_for('main.index'))
         return view(**kwargs)
     return wrapped_view
 

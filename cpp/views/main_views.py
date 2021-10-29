@@ -32,6 +32,6 @@ def main():
         if error is None:
             session.clear()
             session['user_id'] = user.id
-            return redirect(url_for('main.index'))
+            return redirect(url_for('program.program'))
         flash(error)
     return render_template('auth/mainpage.html', form=form)
