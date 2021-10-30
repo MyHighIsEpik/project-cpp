@@ -3,9 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/carousel.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/heroes.css') }}">
     <title>CPP</title>
     <style>
         div.float-lg-left{
@@ -13,7 +15,7 @@
             height: 600px;
             float: left;
             margin-left: 250px;
-            background-image: url('../static/images/cppmain.png');
+            background-image: url('../../static/images/cppmain.png');
             background-position: top left;
             background-repeat: no-repeat;
             background-size: 75%;
@@ -26,41 +28,46 @@
 
 </head>
 <body>
-    <div class="container my-3">
-        <h1>CPP</h1>
-    </div>
-    <div class="container float-lg-left">
-            <h3>CPP(Compare PC with Program)</h3>
-    </div>
-    <div class="container float-lg-right">
-        <div class="col-lg-7">
-            <div class="jumbotron" style="padding-top: 20px">
-                <form method="post" class="post-form">
-                    <h3 style="text-align: center;">로그인</h3>
-                    {{ form.csrf_token }}
-                    {% include "form_errors.html" %}
-                    <div class="form-group">
-                        <label for="username">ID</label>
-                        <input type="text" placeholder="아이디를 입력하세요." class="form-control" name="username" id="username"
-                            value="{{ form.username.data or '' }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">PASSWORD</label>
-                        <input type="password" placeholder="비밀번호를 입력하세요." class="form-control" name="password" id="password"
-                            value="{{ form.password.data or '' }}">
-                    </div>
-                    <div class="form-group border-bottom = 10px">
-                        <button id="btn-Yes" type="submit" class="btn btn-primary btn-block">로그인</button>
-                    </div>
-                    <a href="{{ url_for('auth.signup') }}" class="btn btn-secondary">회원가입</a>
-                </form>
-            </div>
+
+<div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-lg-5 py-5">
+        <div class="col-lg-7 text-center text-lg-start">
+            <h1 class="display-4 fw-bold lh-1 mb-3">CPP에 오신 것을 환영합니다!</h1>
+            <p class="col-lg-10 fs-4">PC사양을 일일이 찾아보는게 힘드시지 않았나요? 이 웹사이트에서는 프로그램 실행 한 번으로 간단하게 PC사양을 알 수 있습니다. 다른 사용자들과의 의견 공유 역시 가능합니다!</p>
+        </div>
+
+        <div class="col-md-10 mx-auto col-lg-5">
+            <form method="post" class="p-4 p-md-5 border rounded-3 bg-light">
+                <h3 style="text-align: center;">로그인</h3>
+                {{ form.csrf_token }}
+                {% include "form_errors.html" %}
+                <div class="form-group form-floating mb-3">
+                    <input type="text" placeholder="아이디를 입력하세요." class="form-control" name="username" id="floatingInput"
+                        value="{{ form.username.data or '' }}">
+                    <label for="floatingInput">ID</label>
+                </div>
+                <div class="form-group form-floating mb-3">
+                    <input type="password" placeholder="비밀번호를 입력하세요." class="form-control" name="password" id="floatingPassword"
+                        value="{{ form.password.data or '' }}">
+                    <label for="floatingPassword">Password</label>
+                </div>
+                <div class="checkbox mb-3">
+                </div>
+                <div class="form-group border-bottom = 10px">
+                    <button id="btn-Yes" type="submit" class="w-100 btn btn-primary btn-lg">로그인</button>
+                </div>
+                <hr class="my-4">
+                <small class="text-muted">아직 회원이 아니신가요?</small>
+                <a href="{{ url_for('auth.signup') }}" class="btn btn-secondary">회원가입</a>
+            </form>
         </div>
     </div>
+</div>
+
 <!-- jQuery JS -->
-<script src="{{ url_for('static', filename='jquery-3.6.0.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery-3.6.0.min.js') }}"></script>
 <!-- Bootstrap JS -->
-<script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='bootstrap/bootstrap.min.js') }}"></script>
 <!-- 자바스크립트 Start -->
 <!-- 자바스크립트 End -->
 </body>

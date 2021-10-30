@@ -3,8 +3,6 @@ from werkzeug.utils import redirect
 from cpp.forms import UserLoginForm
 from werkzeug.security import check_password_hash
 from cpp.models import User
-from flask import Blueprint, url_for
-from werkzeug.utils import redirect
 
 bp = Blueprint('main', __name__, url_prefix='/')
 
@@ -32,6 +30,11 @@ def main():
         if error is None:
             session.clear()
             session['user_id'] = user.id
-            return redirect(url_for('program.program'))
+            return redirect(url_for('main.homepage'))
         flash(error)
     return render_template('auth/mainpage.html', form=form)
+
+@bp.route('/homepage/')
+def homepage():
+    return render_template('/homepage.html')
+

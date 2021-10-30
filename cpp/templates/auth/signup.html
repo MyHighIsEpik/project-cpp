@@ -1,31 +1,31 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container my-3">
-    <div class="col-lg-12">
-        <div class="jumbotron" style="padding-top: 20px">
-            <form method="post" class="post-form">
+<div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-lg-5 py-5">
+        <div class="col-md-10 mx-auto col-lg-5">
+            <form method="post" class="p-4 p-md-5 border rounded-3 bg-light">
                 <h3 style="text-align: center;">회원가입</h3>
                 {{ form.csrf_token }}
                 {% include "form_errors.html" %}
-                <div class="form-group">
-                    <label for="username">ID</label>
-                    <input type="text" placeholder="아이디를 입력하세요." class="form-control" name="username" id="username"
+                <div class="form-group form-floating mb-3">
+                    <input type="text" placeholder="아이디를 입력하세요." class="form-control" name="username" id="floatingInput"
                            value="{{ form.username.data or '' }}">
+                    <label for="floatingInput">ID</label>
                 </div>
-                <div class="form-group">
-                    <label for="password1">PASSWORD</label>
-                    <input type="password" placeholder="비밀번호를 입력하세요." class="form-control" name="password1" id="password1"
+                <div class="form-group form-floating mb-3">
+                    <input type="password" placeholder="비밀번호를 입력하세요." class="form-control" name="password1" id="floatingPassword1"
                            value="{{ form.password1.data or '' }}">
+                    <label for="floatingPassword1">Password</label>
                 </div>
-                <div class="form-group">
-                    <label for="password2">PASSWORD AGAIN</label>
-                    <input type="password" placeholder="비밀번호를 한 번 더 입력하세요." class="form-control" name="password2" id="password2"
+                <div class="form-group form-floating mb-3">
+                    <input type="password" placeholder="비밀번호를 한 번 더 입력하세요." class="form-control" name="password2" id="floatingPassword2"
                            value="{{ form.password2.data or '' }}">
+                    <label for="floatingPassword2">Password Again</label>
                 </div>
-                <div class="form-group">
-                    <label for="nickname">Nickname (2글자 이상, 9글자 이하)</label>
-                    <input type="text" placeholder="사용할 닉네임을 입력하세요." class="form-control" name="nickname" id="nickname"
+                <div class="form-group form-floating mb-3">
+                    <input type="text" placeholder="사용할 닉네임을 입력하세요." class="form-control" name="nickname" id="floatingNickname""
                            value="{{ form.nickname.data or '' }}">
+                    <label for="floatingNickname">Nickname (2글자 이상, 9글자 이하)</label>
                 </div>
                 <button type="submit" class="btn btn-primary">생성하기</button>
             </form>
