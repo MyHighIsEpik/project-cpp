@@ -2,42 +2,44 @@
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
 <div class="container my-3">
-    <h2 class="border-bottom py-2">{{ g.user.nickname }}의 마이페이지</h2>
-    <div class="row my-3">
-        <div class="col-11">
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-text">아이디 : {{ g.user.username }} </div>
+    <div class="col-8 mx-auto">
+        <h2 class="border-bottom py-2">{{ g.user.nickname }}의 마이페이지</h2>
+        <div class="row my-3">
+            <div class="col-11">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-text">아이디 : {{ g.user.username }} </div>
+                    </div>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-text">닉네임 : {{ g.user.nickname }} </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-text">닉네임 : {{ g.user.nickname }} </div>
+                    </div>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-text">Personal Code : {{ g.user.codenum }} (프로그램 작동에 사용됩니다!)</div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-text">Personal Code : {{ g.user.codenum }} (프로그램 작동에 사용됩니다!)</div>
+                    </div>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="border-bottom py-2">내 PC 정보</h4>
-                    <div class="card-text">CPU : {{ user_pcinfo.cpu }}</div>
-                    <div class="card-text">RAM(GB) : {{ user_pcinfo.ram }}</div>
-                    <div class="card-text">OSversion : Windows {{ user_pcinfo.os }}</div>
-                    <div class="card-text">Videocard : {{ user_pcinfo.graphic }}</div>
-                    <div class="card-text">FREE DISK SPACE(MB) : C: {{ user_pcinfo.cdisk }} | D: {{ user_pcinfo.ddisk }} | E: {{ user_pcinfo.edisk }} | F: {{ user_pcinfo.fdisk }}</div>
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="border-bottom py-2">내 PC 정보</h4>
+                        <div class="card-text">CPU : {{ user_pcinfo.cpu }}</div>
+                        <div class="card-text">RAM(GB) : {{ user_pcinfo.ram }}</div>
+                        <div class="card-text">OSversion : Windows {{ user_pcinfo.os }}</div>
+                        <div class="card-text">Videocard : {{ user_pcinfo.graphic }}</div>
+                        <div class="card-text">FREE DISK SPACE(MB) : C: {{ user_pcinfo.cdisk }} | D: {{ user_pcinfo.ddisk }} | E: {{ user_pcinfo.edisk }} | F: {{ user_pcinfo.fdisk }}</div>
+                    </div>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="border-bottom py-2">혹시 PC 사양 파악 프로그램을 삭제하셨나요?</h5>
-                    <a href="{{ url_for('program.download1') }}" class="btn btn-secondary">다운로드</a>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="border-bottom py-2">혹시 PC 사양 파악 프로그램을 삭제하셨나요?</h5>
+                        <a href="{{ url_for('program.download1') }}" class="btn btn-secondary">다운로드</a>
+                    </div>
                 </div>
             </div>
         </div>
+        <a href="{{ url_for('auth.quit') }}" class="btn btn-secondary">회원탈퇴</a>
     </div>
-    <a href="{{ url_for('auth.quit') }}" class="btn btn-secondary">회원탈퇴</a>
 </div>
 {% endblock %}
