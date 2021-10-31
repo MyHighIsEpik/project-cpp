@@ -1,23 +1,30 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container my-3">
-    <div class="col-lg-12">
-        <div class="jumbotron" style="padding-top: 20px">
-            <form method="post" class="post-form">
+<div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-lg-5 py-5">
+        <div class="col-md-10 mx-auto col-lg-5">
+            <form method="post" class="p-4 p-md-5 border rounded-3 bg-light">
                 <h3 style="text-align: center;">로그인</h3>
                 {{ form.csrf_token }}
                 {% include "form_errors.html" %}
-                <div class="form-group">
-                    <label for="username">ID</label>
-                    <input type="text" placeholder="아이디를 입력하세요." class="form-control" name="username" id="username"
+                <div class="form-group form-floating mb-3">
+                    <input type="text" placeholder="아이디를 입력하세요." class="form-control" name="username" id="floatingInput"
                         value="{{ form.username.data or '' }}">
+                    <label for="floatingInput">ID</label>
                 </div>
-                <div class="form-group">
-                    <label for="password">PASSWORD</label>
-                    <input type="password" placeholder="비밀번호를 입력하세요." class="form-control" name="password" id="password"
+                <div class="form-group form-floating mb-3">
+                    <input type="password" placeholder="비밀번호를 입력하세요." class="form-control" name="password" id="floatingPassword"
                         value="{{ form.password.data or '' }}">
+                    <label for="floatingPassword">Password</label>
                 </div>
-                <button id="btn-Yes" type="submit" class="btn btn-primary btn-block">로그인</button>
+                <div class="checkbox mb-3">
+                </div>
+                <div class="form-group border-bottom = 10px">
+                    <button id="btn-Yes" type="submit" class="w-100 btn btn-primary btn-lg">로그인</button>
+                </div>
+                <hr class="my-4">
+                <small class="text-muted">아직 회원이 아니신가요?</small>
+                <a href="{{ url_for('auth.signup') }}" class="btn btn-secondary">회원가입</a>
             </form>
         </div>
     </div>
