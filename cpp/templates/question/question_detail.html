@@ -20,16 +20,16 @@
                 <div class="card"> <!-- my-3 삭제 -->
                     <div class="card-body">
                         <div class="card-text">{{ question.content|markdown }}</div>
-                        <div class="d-flex justify-content-end">
+                        <div class="d-flex justify-content-end bg">
                             {% if question.modify_date %}
-                            <div class="badge badge-light p-2 text-left mx-3">
+                            <div class="badge badge-light p-2 text-left mx-3 bg-secondary">
                                 <div class="mb-2">modified at</div>
                                 <div>{{ question.modify_date|datetime }}</div>
                             </div>
                             {% endif %}
-                            <div class="badge badge-light p-2 text-left">
-                        <div class="mb-2">{{ question.user.username }}</div>
-                                <div>{{ question.create_date|datetime }}</div>
+                            <div class="badge badge-light p-2 text-left bg-dark">
+                                <div class="mb-2">{{ question.user.username }}</div>
+                                <div class="">{{ question.create_date|datetime }}</div>
                             </div>
                         </div>
                         {% if g.user == question.user %}
@@ -87,12 +87,12 @@
                         <div class="card-text">{{ answer.content|markdown }}</div>
                         <div class="d-flex justify-content-end">
                             {% if answer.modify_date %}
-                            <div class="badge badge-light p-2 text-left mx-3">
+                            <div class="badge badge-light p-2 text-left mx-3 bg-secondary">
                                 <div class="mb-2">modified at</div>
                                 <div>{{ answer.modify_date|datetime }}</div>
                             </div>
                             {% endif %}
-                            <div class="badge badge-light p-2 text-left">
+                            <div class="badge badge-light p-2 text-left bg-dark">
                                 <div class="mb-2">{{ answer.user.username }}</div>
                                 <div>{{ answer.create_date|datetime }}</div>
                             </div>
