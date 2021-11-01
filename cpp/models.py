@@ -21,6 +21,8 @@ class Question(db.Model):
     user = db.relationship('User', backref=db.backref('question_set'))
     modify_date = db.Column(db.DateTime(), nullable=True)
     voter = db.relationship('User', secondary=question_voter, backref=db.backref('question_voter_set'))
+    user_codenum = db.Column(db.String(45), db.ForeignKey('user_pcinfo.codenum', ondelete='CASCADE'), nullable=True)
+    user_pcinfo = db.relationship('User_pcinfo', backref=db.backref('question_user_set'))
 
 class Answer(db.Model):
     id = db.Column(db.Integer, primary_key=True)

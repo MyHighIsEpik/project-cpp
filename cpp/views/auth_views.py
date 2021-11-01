@@ -53,6 +53,8 @@ def load_logged_in_user():
     else:
         g.user = User.query.get(user_id)
 
+    #여기서 g.user에 로그인 한 유저의 정보값이 들어감
+
 @bp.route('/logout/')
 def logout():
     session.clear()

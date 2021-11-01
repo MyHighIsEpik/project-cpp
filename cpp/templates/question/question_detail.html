@@ -32,6 +32,9 @@
                                 <div class="">{{ question.create_date|datetime }}</div>
                             </div>
                         </div>
+                        <small class="border-bottom my-3 py-2">사용자 PC 사양</small>
+                        <!-- PC사양 표시될 곳 -->
+                        <div class="mb-2">{{ question.user_pcinfo.cpu }}</div>
                         {% if g.user == question.user %}
                         <div class="my-3">
                             <a href="{{ url_for('question.modify', question_id=question.id) }}"

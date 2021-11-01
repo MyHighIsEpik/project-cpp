@@ -68,7 +68,7 @@ def create():
     form = QuestionForm()
     if request.method == 'POST' and form.validate_on_submit():
         question = Question(subject=form.subject.data, content=form.content.data,
-                            create_date=datetime.now(), user=g.user)
+                            create_date=datetime.now(), user=g.user, user_codenum=g.user.codenum)
         db.session.add(question)
         db.session.commit()
         return redirect(url_for('question._list'))
