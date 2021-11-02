@@ -37,13 +37,16 @@
             <div class="col-11">
                 <div class="card">
                     <div class="card-body">
-                        <div class="card-text">CPU : {{ cadcpu.score }}</div>
-                        <div class="card-text">CPU : {{ usercpu.score }}</div>
-                        {% if usercpu.score >= cadcpu.score %}
-                        <div class="card-text">CPU : OK!!!</div>
+                        {% if cadinfo.cpu %}
+                            {% if usercpu.score >= cadcpu.score %}
+                            <div class="card-text">CPU : OK!!!</div>
+                            {% else %}
+                            <div class="card-text">CPU : NO!!!</div>
+                            {% endif %}
                         {% else %}
-                        <div class="card-text">CPU : NO!!!</div>
+                            <div class="card-text">CPU : OK!!!</div>
                         {% endif %}
+
                     </div>
                 </div>
             </div>
