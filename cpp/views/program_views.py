@@ -2,7 +2,7 @@ from flask import Blueprint, request, render_template, g
 from flask import send_file
 
 from .. import db
-from ..models import Cadinfo, Gameinfo, Illustinfo, User_pcinfo, Cpulist
+from ..models import Cadinfo, Gameinfo, Illustinfo, User_pcinfo, Cpulist, Videocard
 from cpp.views.auth_views import login_required
 
 bp = Blueprint('program', __name__, url_prefix='/program')
@@ -103,8 +103,38 @@ def cad_compare(cad_id):
     user_pcinfo = User_pcinfo.query.filter_by(codenum=g.user.codenum).first()
     cadcpu = Cpulist.query.filter_by(cpuname=cadinfo.cpu).first()
     usercpu = Cpulist.query.filter_by(cpuname=user_pcinfo.cpu).first()
+    uservideo = Videocard.query.filter_by(vcname=user_pcinfo.graphic).first()
+    cadvideo = Videocard.query.filter_by(vcname=cadinfo.videocard).first()
 
     return render_template('program/cad_compare.html', \
-                           cadinfo=cadinfo, user_pcinfo=user_pcinfo, cadcpu=cadcpu, usercpu=usercpu)
+                           cadinfo=cadinfo, user_pcinfo=user_pcinfo, cadcpu=cadcpu, usercpu=usercpu, uservideo=uservideo, \
+                            cadvideo=cadvideo)
 
 
+@bp.route('/illust_list/detail/<int:illust_id>/compare/')
+@login_required
+def illust_compare(illust_id):
+    illustinfo = Illustinfo.query.get_or_404(illust_id)
+    user_pcinfo = User_pcinfo.query.filter_by(codenum=g.user.codenum).first()
+    illustcpu = Cpulist.query.filter_by(cpuname=illustinfo.cpu).first()
+    usercpu = Cpulist.query.filter_by(cpuname=user_pcinfo.cpu).first()
+    uservideo = Videocard.query.filter_by(vcname=user_pcinfo.graphic).first()
+    illustvideo = Videocard.query.filter_by(vcname=illustinfo.videocard).first()
+
+    return render_template('program/illust_compare.html', \
+                           illustinfo=illustinfo, user_pcinfo=user_pcinfo, illustcpu=illustcpu, usercpu=usercpu, uservideo=uservideo, \
+                            illustvideo=illustvideo)
+
+@bp.route('/game_list/detail/<int:game_id>/compare/')
+@login_required
+def game_compare(game_id):
+    gameinfo = Gameinfo.query.get_or_404(game_id)
+    user_pcinfo = User_pcinfo.query.filter_by(codenum=g.user.codenum).first()
+    gamecpu = Cpulist.query.filter_by(cpuname=gameinfo.cpu).first()
+    usercpu = Cpulist.query.filter_by(cpuname=user_pcinfo.cpu).first()
+    uservideo = Videocard.query.filter_by(vcname=user_pcinfo.graphic).first()
+    gamevideo = Videocard.query.filter_by(vcname=gameinfo.videocard).first()
+
+    return render_template('program/game_compare.html', \
+                           gameinfo=gameinfo, user_pcinfo=user_pcinfo, gamecpu=gamecpu, usercpu=usercpu, uservideo=uservideo, \
+                            gamevideo=gamevideo)

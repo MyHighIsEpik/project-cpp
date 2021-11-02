@@ -4,16 +4,16 @@
 <div class="container my-3">
     <div class="col-8 mx-auto">
         <h2 class="border-bottom py-2">사양 비교</h2>
-        <h2 class="border-bottom py-2">{{ cadinfo.name }}</h2>
+        <h2 class="border-bottom py-2">{{ illustinfo.name }}</h2>
         <div class="row my-3">
             <div class="col-11">
                 <div class="card">
                     <div class="card-body">
-                        <div class="card-text">CPU : {{ cadinfo.cpu }}</div>
-                        <div class="card-text">RAM(GB) : {{ cadinfo.ram }}</div>
-                        <div class="card-text">OS : {{ cadinfo.osversion }}</div>
-                        <div class="card-text">VIDEOCARD : {{ cadinfo.videocard }}</div>
-                        <div class="card-text">FREE DISK SPACE(MB) : {{ cadinfo.diskspace }}</div>
+                        <div class="card-text">CPU : {{ illustinfo.cpu }}</div>
+                        <div class="card-text">RAM(GB) : {{ illustinfo.ram }}</div>
+                        <div class="card-text">OS : {{ illustinfo.osversion }}</div>
+                        <div class="card-text">VIDEOCARD : {{ illustinfo.videocard }}</div>
+                        <div class="card-text">FREE DISK SPACE(MB) : {{ illustinfo.diskspace }}</div>
                     </div>
                 </div>
             </div>
@@ -38,32 +38,33 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="compare_cpu">
-                            {% if cadinfo.cpu  %}
-                                {% if cadcpu == None %}
+                            {% if usercpu %}
                                 <div class="card-text">CPU : OK!!!</div>
-                                {% elif usercpu.score >= cadcpu.score %}
-                                <div class="card-text">CPU : OK!!!</div>
-                                {% else %}
-                                <div class="card-text">CPU : NO!!!</div>
-                                {% endif %}
                             {% else %}
-                                <div class="card-text">CPU : OK!!!</div>
+                                <div class="card-text">CPU : NO!!!</div>
                             {% endif %}
                         </div>
                         <div class="compare_video">
-                            {% if cadinfo.video %}
-                                {% if uservideo.score >= cadvideo.score %}
-                                <div class="card-text">Video card : OK!!!</div>
-                                {% else %}
-                                <div class="card-text">Video card : NO!!!</div>
-                                {% endif %}
-                            {% else %}
-                                <div class="card-text">Video card : OK!!!</div>
-                            {% endif %}
+                            <script>
+                            if (illustinfo.videocard){
+                                if (illustinfo.videocard.includes( 'OpenGL' )){
+                                    document.write( "<div>OpenGL may vary by graphics card, so check it out for yourself!" + "</div>" );
+                                }else if(illustinfo.videocard.includes( 'DirectX 11' )){
+                                    document.write( "<div>If you are using windows 7 or later, you are using direct11." + "</div>" );
+                                }else if(illustinfo.videocard.includes( 'DirectX 12' )){
+                                    document.write( "<div>If you are using windows 10 or later, you are using direct12." + "</div>" );
+                                }else if(illustinfo.videocard.includes( 'DirectX' )){
+                                    document.write( "<div>If you are using windows 7 or later, you will have to reinstall this version of directx." + "</div>" );
+                                }else {document.write( "<div>If you are using windows 7 or later, you will have to reinstall this version of directx." + "</div>" );
+                                }
+                            else{
+                                document.write( "<div>Videocard : OK!!!" + "</div>" );
+                            }
+                            </script>
                         </div>
                         <div class="compare_ram">
-                            {% if cadinfo.ram %}
-                                {% if user_pcinfo.ram >= cadinfo.ram %}
+                            {% if illustinfo.ram %}
+                                {% if user_pcinfo.ram >= illustinfo.ram %}
                                 <div class="card-text">RAM : OK!!!</div>
                                 {% else %}
                                 <div class="card-text">RAM : NO!!!</div>
@@ -73,19 +74,19 @@
                             {% endif %}
                         </div>
                         <div class="compare_os">
-                            {% if cadinfo.osversion %}
-                                {% if cadinfo.osversion == 'Vista' %}
+                            {% if illustinfo.osversion %}
+                                {% if illustinfo.osversion == 'Vista' %}
                                     {% if user_pcinfo.os == 'XP' %}
                                         <div class="card-text">OS : NO!!!</div>
                                     {% else %}
                                         <div class="card-text">OS : OK!!!</div>
                                     {% endif %}
-                                {% elif cadinfo.osversion == 'XP' %}
+                                {% elif illustinfo.osversion == 'XP' %}
                                     <div class="card-text">OS : OK!!!</div>
                                 {% elif user_pcinfo.os == 'XP' %}
                                     <div class="card-text">OS : NO!!!</div>
                                 {% else %}
-                                    {% if user_pcinfo.os >= cadinfo.osversion %}
+                                    {% if user_pcinfo.os >= illustinfo.osversion %}
                                         <div class="card-text">OS : OK!!!</div>
                                     {% else %}
                                         <div class="card-text">OS : NO!!!</div>
@@ -96,23 +97,23 @@
                             {% endif %}
                         </div>
                         <div class="compare_disk">
-                            {% if cadinfo.diskspace %}
-                                {% if user_pcinfo.cdisk >= cadinfo.diskspace %}
+                            {% if illustinfo.diskspace %}
+                                {% if user_pcinfo.cdisk >= illustinfo.diskspace %}
                                 <div class="card-text">C_disk : OK!!!</div>
                                 {% else %}
                                 <div class="card-text">C_disk : NO!!!</div>
                                 {% endif %}
-                                {% if user_pcinfo.ddisk >= cadinfo.diskspace %}
+                                {% if user_pcinfo.ddisk >= illustinfo.diskspace %}
                                 <div class="card-text">D_disk : OK!!!</div>
                                 {% else %}
                                 <div class="card-text">D_disk : NO!!!</div>
                                 {% endif %}
-                                {% if user_pcinfo.edisk >= cadinfo.diskspace %}
+                                {% if user_pcinfo.edisk >= illustinfo.diskspace %}
                                 <div class="card-text">E_disk : OK!!!</div>
                                 {% else %}
                                 <div class="card-text">E_disk : NO!!!</div>
                                 {% endif %}
-                                {% if user_pcinfo.fdisk >= cadinfo.diskspace %}
+                                {% if user_pcinfo.fdisk >= illustinfo.diskspace %}
                                 <div class="card-text">F_disk : OK!!!</div>
                                 {% else %}
                                 <div class="card-text">F_disk : NO!!!</div>
