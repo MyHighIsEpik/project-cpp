@@ -18,7 +18,42 @@
                 </div>
             </div>
         </div>
-        <a href="{{ url_for('program.cad_compare', cad_id=cadinfo.id) }}" class="btn btn-secondary">내 PC와 비교하기</a>
+        <h2 class="border-bottom py-2">{{ g.user.nickname }} 사용자</h2>
+        <div class="row my-3">
+            <div class="col-11">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-text">CPU : {{ user_pcinfo.cpu }}</div>
+                        <div class="card-text">RAM(GB) : {{ user_pcinfo.ram }}</div>
+                        <div class="card-text">OS : Windows {{ user_pcinfo.os }}</div>
+                        <div class="card-text">VIDEOCARD : {{ user_pcinfo.graphic }}</div>
+                        <div class="card-text">FREE DISK SPACE(MB) : C: {{ user_pcinfo.cdisk }} | D: {{ user_pcinfo.ddisk }} | E: {{ user_pcinfo.edisk }} | F: {{ user_pcinfo.fdisk }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h2 class="border-bottom py-2">비교 결과</h2>
+       <div class="row my-3">
+            <div class="col-11">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-text">CPU : {{ cadcpu.score }}</div>
+                        <div class="card-text">CPU : {{ usercpu.score }}</div>
+                        {% if usercpu.score >= cadcpu.score %}
+                        <div class="card-text">CPU : OK!!!</div>
+                        {% else %}
+                        <div class="card-text">CPU : NO!!!</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
+
+
+{% endblock %}
+{% block script %}
+
 {% endblock %}

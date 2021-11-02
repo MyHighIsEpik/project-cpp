@@ -61,7 +61,7 @@ def create_answer(answer_id):
     form = CommentForm()
     answer = Answer.query.get_or_404(answer_id)
     if request.method == 'POST' and form.validate_on_submit():
-        comment = Comment(user=g.user, content=form.content.data, create_date=datetime.now(), answer=answer)
+        comment = Comment(user=g.user, content=form.content.data, create_date=datetime.now(), answer=answer, user_codenum=g.user.codenum)
         db.session.add(comment)
         db.session.commit()
         return redirect('{}#comment_{}'.format(

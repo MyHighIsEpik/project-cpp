@@ -17,7 +17,7 @@
                 </div>
             </div>
         </div>
-        <a href="{{ url_for('program.cad_compare', cad_id=cadinfo.id) }}" class="btn btn-secondary">내 PC와 비교하기</a>
+        <a href="{{ url_for('program.cad_compare', cad_id=cadinfo.id, cad_cpu=cadinfo.cpu) }}" class="btn btn-secondary">내 PC와 비교하기</a>
     </div>
 </div>
 {% endblock %}

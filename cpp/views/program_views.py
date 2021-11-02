@@ -1,8 +1,9 @@
-from flask import Blueprint, request, render_template
+from flask import Blueprint, request, render_template, g
 from flask import send_file
 
 from .. import db
-from ..models import Cadinfo, Gameinfo, Illustinfo
+from ..models import Cadinfo, Gameinfo, Illustinfo, User_pcinfo, Cpulist
+from cpp.views.auth_views import login_required
 
 bp = Blueprint('program', __name__, url_prefix='/program')
 
@@ -32,11 +33,6 @@ def cad():
 def cad_detail(cad_id):
     cadinfo = Cadinfo.query.get_or_404(cad_id)
     return render_template('program/cad_detail.html', cadinfo=cadinfo)
-
-@bp.route('/cad_list/detail/<int:cad_id>/compare/')
-def cad_compare(cad_id):
-    cadinfo = Cadinfo.query.get_or_404(cad_id)
-    return render_template('program/cad_compare.html', cadinfo=cadinfo)
 
 @bp.route('/game_list/')
 def game():
@@ -96,3 +92,19 @@ def download1():
                      mimetype='application/octet-stream',
                      as_attachment=True,
                      attachment_filename='CPP.exe')
+
+#사양비교
+
+
+@bp.route('/cad_list/detail/<int:cad_id>/compare/')
+@login_required
+def cad_compare(cad_id):
+    cadinfo = Cadinfo.query.get_or_404(cad_id)
+    user_pcinfo = User_pcinfo.query.filter_by(codenum=g.user.codenum).first()
+    cadcpu = Cpulist.query.filter_by(cpuname=cadinfo.cpu).first()
+    usercpu = Cpulist.query.filter_by(cpuname=user_pcinfo.cpu).first()
+
+    return render_template('program/cad_compare.html', \
+                           cadinfo=cadinfo, user_pcinfo=user_pcinfo, cadcpu=cadcpu, usercpu=usercpu)
+
+

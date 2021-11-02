@@ -63,7 +63,7 @@ def logout():
 def login_required(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
-        if g.user is None:
+        if g.user is None:          #로그인 한 상태가 아니라면 첫 페이지로 이동
             return redirect(url_for('main.index'))
         return view(**kwargs)
     return wrapped_view
