@@ -2,6 +2,25 @@
 body {
   background-color: #d3d4da;
 }
+  /* 누르면 보이게 하는 코드*/
+#check-btn { display: none; }
+#check-btn:checked ~ .menubars { display: block; }
+.menubars { display: none; }
+
+#btn_toggle{
+  font-size:14px;
+  padding:10px 15px;
+  border:1px solid #ddd;
+  background-color:#0a76b7;
+  border-radius:5px;
+  color:#fff;
+  font-weight:bold;
+}
+#Toggle{
+  font-size:14px;
+  color: #666;
+}
+  /* 누르면 보이게 하는 코드*/
 
 @font-face {
   font-family: 'Material Icons';

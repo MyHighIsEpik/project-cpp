@@ -32,8 +32,16 @@
                                 <div class="">{{ question.create_date|datetime }}</div>
                             </div>
                         </div>
-                        <small class="border-bottom my-3 py-2">사용자 PC 사양</small>
                         <!-- PC사양 표시될 곳 -->
+                        <input id="check-btn" type="checkbox" />
+                        <label for="check-btn"><small class="border-bottom my-3 py-2">사용자 PC 사양 >></small></label>
+                        <ul class="menubars">
+                            <li>메뉴</li>
+                            <li>메뉴</li>
+                            <li>메뉴</li>
+                            <li>메뉴</li>
+                        </ul>
+
                         <div class="mb-2">{{ question.user_pcinfo.cpu }}</div>
                         {% if g.user == question.user %}
                         <div class="my-3">
