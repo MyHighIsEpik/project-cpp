@@ -33,6 +33,10 @@ def cad_detail(cad_id):
     cadinfo = Cadinfo.query.get_or_404(cad_id)
     return render_template('program/cad_detail.html', cadinfo=cadinfo)
 
+@bp.route('/cad_list/detail/<int:cad_id>/compare/')
+def cad_compare(cad_id):
+    cadinfo = Cadinfo.query.get_or_404(cad_id)
+    return render_template('program/cad_compare.html', cadinfo=cadinfo)
 
 @bp.route('/game_list/')
 def game():

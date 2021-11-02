@@ -34,6 +34,8 @@ class Answer(db.Model):
     user = db.relationship('User', backref=db.backref('answer_set'))
     modify_date = db.Column(db.DateTime(), nullable=True)
     voter = db.relationship('User', secondary=answer_voter, backref=db.backref('answer_voter_set'))
+    user_codenum = db.Column(db.String(45), db.ForeignKey('user_pcinfo.codenum', ondelete='CASCADE'), nullable=True)
+    user_pcinfo = db.relationship('User_pcinfo', backref=db.backref('answer_user_set'))
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -64,6 +66,8 @@ class Comment(db.Model):
     question = db.relationship('Question', backref=db.backref('comment_set'))
     answer_id = db.Column(db.Integer, db.ForeignKey('answer.id', ondelete='CASCADE'), nullable=True)
     answer = db.relationship('Answer', backref=db.backref('comment_set'))
+    user_codenum = db.Column(db.String(45), db.ForeignKey('user_pcinfo.codenum', ondelete='CASCADE'), nullable=True)
+    user_pcinfo = db.relationship('User_pcinfo', backref=db.backref('comment_user_set'))
 
 class Cadinfo(db.Model):
     id = db.Column(db.Integer, primary_key=True)

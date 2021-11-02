@@ -34,15 +34,17 @@
                         </div>
                         <!-- PC사양 표시될 곳 -->
                         <input id="check-btn" type="checkbox" />
-                        <label for="check-btn"><small class="border-bottom my-3 py-2">사용자 PC 사양 >></small></label>
+                        <label for="check-btn"><small class="border-bottom my-3 py-2">PC 사양 >></small></label>
                         <ul class="menubars">
-                            <li>메뉴</li>
-                            <li>메뉴</li>
-                            <li>메뉴</li>
-                            <li>메뉴</li>
-                        </ul>
-
-                        <div class="mb-2">{{ question.user_pcinfo.cpu }}</div>
+                            <small>
+                                <li>CPU : {{ question.user_pcinfo.cpu }}</li>
+                                <li>RAM(GB) : {{ question.user_pcinfo.cpu }}</li>
+                                <li>OSversion : {{ question.user_pcinfo.os }}</li>
+                                <li>Videocard : {{ question.user_pcinfo.graphic }}</li>
+                                <li>FREE DISK SPACE(MB) : C: {{ question.user_pcinfo.cdisk }} | D: {{ question.user_pcinfo.ddisk }} | E: {{ question.user_pcinfo.edisk }} | F: {{ question.user_pcinfo.fdisk }}</li>
+                                <a href="{{ url_for('question._list') }}" class="btn">내 PC와 비교하기 >></a>
+                            </small>
+                        </ul>   <!-- 작성자 pc사양 표시 -->
                         {% if g.user == question.user %}
                         <div class="my-3">
                             <a href="{{ url_for('question.modify', question_id=question.id) }}"

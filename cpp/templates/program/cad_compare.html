@@ -1,23 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>CPP</title>
-</head>
-<body>
-    <h2 class="border-bottom py-2">{{ cadinfo.name }}</h2>
-    <div class="row my-3">
-        <div class="col-11">
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-text">CPU : {{ cadinfo.cpu }}</div>
-                    <div class="card-text">RAM(GB) : {{ cadinfo.ram }}</div>
-                    <div class="card-text">OS : {{ cadinfo.osversion }}</div>
-                    <div class="card-text">VIDEOCARD : {{ cadinfo.videocard }}</div>
-                    <div class="card-text">FREE DISK SPACE(MB) : {{ cadinfo.diskspace }}</div>
+{% extends 'base.html' %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+<div class="container my-3">
+    <div class="col-8 mx-auto">
+        <h2 class="border-bottom py-2">사양 비교</h2>
+        <h2 class="border-bottom py-2">{{ cadinfo.name }}</h2>
+        <div class="row my-3">
+            <div class="col-11">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-text">CPU : {{ cadinfo.cpu }}</div>
+                        <div class="card-text">RAM(GB) : {{ cadinfo.ram }}</div>
+                        <div class="card-text">OS : {{ cadinfo.osversion }}</div>
+                        <div class="card-text">VIDEOCARD : {{ cadinfo.videocard }}</div>
+                        <div class="card-text">FREE DISK SPACE(MB) : {{ cadinfo.diskspace }}</div>
+                    </div>
                 </div>
             </div>
         </div>
+        <a href="{{ url_for('program.cad_compare', cad_id=cadinfo.id) }}" class="btn btn-secondary">내 PC와 비교하기</a>
     </div>
-</body>
-</html>
+</div>
+{% endblock %}

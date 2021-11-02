@@ -17,7 +17,7 @@ def create(question_id):
     question = Question.query.get_or_404(question_id)
     if form.validate_on_submit():
         content = request.form['content']
-        answer = Answer(content=content, create_date=datetime.now(), user=g.user)
+        answer = Answer(content=content, create_date=datetime.now(), user=g.user, user_codenum=g.user.codenum)
         question.answer_set.append(answer)
         db.session.commit()
         return redirect('{}#answer_{}'.format(
@@ -54,3 +54,4 @@ def delete(answer_id):
         db.session.delete(answer)
         db.session.commit()
     return redirect(url_for('question.detail', question_id=question_id))
+

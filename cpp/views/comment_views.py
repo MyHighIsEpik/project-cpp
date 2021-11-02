@@ -17,7 +17,7 @@ def create_question(question_id):
     form = CommentForm()
     question = Question.query.get_or_404(question_id)
     if request.method == 'POST' and form.validate_on_submit():
-        comment = Comment(user=g.user, content=form.content.data, create_date=datetime.now(), question=question)
+        comment = Comment(user=g.user, content=form.content.data, create_date=datetime.now(), question=question, user_codenum=g.user.codenum)
         db.session.add(comment)
         db.session.commit()
         return redirect('{}#comment_{}'.format(
