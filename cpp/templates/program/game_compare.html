@@ -52,13 +52,17 @@
                         </div>
                         <div class="compare_video">
                             {% if gameinfo.video %}
-                                {% if uservideo.score >= gamevideo.score %}
-                                <div class="card-text">Video card : OK!!!</div>
+                                {% if uservideo.score %}
+                                    {% if uservideo.score >= gamevideo.score %}
+                                    <div class="card-text">Video card : OK!!!</div>
+                                    {% else %}
+                                    <div class="card-text">Video card : NO!!!</div>
+                                    {% endif %}
                                 {% else %}
-                                <div class="card-text">Video card : NO!!!</div>
+                                <div class="card-text">We don't have data of user's video card</div>
                                 {% endif %}
                             {% else %}
-                                <div class="card-text">Video card : OK!!!</div>
+                            <div class="card-text">We don't have data of program's video card</div>
                             {% endif %}
                         </div>
                         <div class="compare_ram">

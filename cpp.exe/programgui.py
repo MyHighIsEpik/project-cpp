@@ -59,15 +59,17 @@ def updatecode():
             curs.execute(
                 "DELETE FROM user_pcinfo WHERE codenum = (%s)", (input_codenum2))
             curs.connection.commit()
-
             curs.execute(
                 "INSERT INTO user_pcinfo (codenum, cpu, graphic, os, ram, cdisk, ddisk, edisk, fdisk) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)", (input_codenum2, cpu, graphic, os, ram, disk[0], disk[1], disk[2], disk[3]))
             curs.connection.commit()
+
+            
                 
         except :
             messagebox.showerror('오류', '이미 존재하는 코드입니다!')
 
         else :
+            
             messagebox.showinfo('성공', '데이터 업데이트 성공')
 
     else :          #입력받은 코드 값이 없을 경우

@@ -43,13 +43,18 @@ def VideoInfo():
     fd_popen = subprocess.Popen(cmd, stdout=subprocess.PIPE).stdout  # 명령어 실행 후 반환되는 결과를 파일에 저장
     video_info = fd_popen.read().strip()
     fd_popen.close()  # 파일 닫기
-    video_info = video_info.decode()  # video_info = 그래픽카드 페이지 출력 변수
-    video_info1 = video_info.split('\n')[1]  # video_info1 = 그래픽카드 사양비교 변수
+    video_inf = video_info.decode()  # video_info = 그래픽카드 페이지 출력 변수
+    video_info = video_inf.split('\n')[1]  # video_info1 = 그래픽카드 사양비교 변수
+    video_info1 = video_inf.split('\n')[2]
     video_info = video_info.split()
     del video_info[0]
     video_info = (' ').join(video_info)
+    video_info1 = video_info1.split()
+    del video_info1[0]
+    video_info1 = (' ').join(video_info1)
 
     return video_info
+
 
 
 # shutil 라이브러리 이용해서 Disk 정보 파악 후 MB로 변환
