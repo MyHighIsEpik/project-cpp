@@ -47,7 +47,8 @@ class User(db.Model):
 class User_pcinfo(db.Model):
     codenum = db.Column(db.String(45), db.ForeignKey('user.codenum', ondelete='CASCADE'), primary_key=True)
     cpu = db.Column(db.Text, nullable=True)
-    graphic = db.Column(db.Text, nullable=True)
+    graphic1 = db.Column(db.Text, nullable=True)
+    graphic2 = db.Column(db.Text, nullable=True)
     os = db.Column(db.Text, nullable=True)
     ram = db.Column(db.Integer, nullable=True)
     cdisk = db.Column(db.Integer, nullable=True)
