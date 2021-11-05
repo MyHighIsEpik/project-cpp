@@ -3,7 +3,7 @@ from flask import send_file
 
 from .. import db
 from ..models import Cadinfo, Gameinfo, Illustinfo, User_pcinfo, Cpulist, Videocard
-from cpp.views.auth_views import login_required
+from ..views.auth_views import login_required
 
 bp = Blueprint('program', __name__, url_prefix='/program')
 
@@ -138,3 +138,4 @@ def game_compare(game_id):
     return render_template('program/game_compare.html', \
                            gameinfo=gameinfo, user_pcinfo=user_pcinfo, gamecpu=gamecpu, usercpu=usercpu, uservideo=uservideo, \
                             gamevideo=gamevideo)
+

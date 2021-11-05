@@ -37,88 +37,93 @@
             <div class="col-11">
                 <div class="card">
                     <div class="card-body">
-                        <div class="compare_cpu">
+                        <div class="compare_cpu">           <!-- CPU 비교 -->
                             {% if cadinfo.cpu  %}
-                                {% if cadcpu == None %}
-                                <div class="card-text">CPU : OK!!!</div>
+                                {% if cadcpu == None %}     <!-- 프로그램 cpu 사양이 비었을 때 -->
+                                <div class="card-text text-primary">CPU : OK!!!</div>
                                 {% elif usercpu.score >= cadcpu.score %}
-                                <div class="card-text">CPU : OK!!!</div>
+                                <div class="card-text text-primary">CPU : OK!!!</div>
                                 {% else %}
-                                <div class="card-text">CPU : NO!!!</div>
+                                <div class="card-text text-danger">CPU : NO!!!</div>
                                 {% endif %}
                             {% else %}
-                                <div class="card-text">CPU : OK!!!</div>
+                                <div class="card-text text-primary">CPU : OK!!!</div>
                             {% endif %}
                         </div>
-                        <div class="compare_video">
+                        <hr/>
+                        <div class="compare_video">         <!-- 그래픽카드 비교 -->
                             {% if cadinfo.video %}
                                 {% if uservideo.score >= cadvideo.score %}
-                                <div class="card-text">Video card : OK!!!</div>
+                                <div class="card-text text-primary">VIDEOCARD : OK!!!</div>
                                 {% else %}
-                                <div class="card-text">Video card : NO!!!</div>
+                                <div class="card-text text-danger">VIDEOCARD : NO!!!</div>
                                 {% endif %}
                             {% else %}
-                                <div class="card-text">Video card : OK!!!</div>
+                                <div class="card-text text-primary">VIDEOCARD : OK!!!</div>
                             {% endif %}
                         </div>
-                        <div class="compare_ram">
+                        <hr/>
+                        <div class="compare_ram">           <!-- RAM 비교 -->
                             {% if cadinfo.ram %}
                                 {% if user_pcinfo.ram >= cadinfo.ram %}
-                                <div class="card-text">RAM : OK!!!</div>
+                                <div class="card-text text-primary">RAM : OK!!!</div>
                                 {% else %}
-                                <div class="card-text">RAM : NO!!!</div>
+                                <div class="card-text text-danger">RAM : NO!!!</div>
                                 {% endif %}
                             {% else %}
-                                <div class="card-text">RAM : OK!!!</div>
+                                <div class="card-text text-primary">RAM : OK!!!</div>
                             {% endif %}
                         </div>
-                        <div class="compare_os">
+                        <hr/>
+                        <div class="compare_os">            <!-- WINDOWS 버전 비교 /  XP<Vista<7<8<10 -->
                             {% if cadinfo.osversion %}
                                 {% if cadinfo.osversion == 'Vista' %}
                                     {% if user_pcinfo.os == 'XP' %}
-                                        <div class="card-text">OS : NO!!!</div>
+                                        <div class="card-text text-danger">OS : NO!!!</div>
                                     {% else %}
-                                        <div class="card-text">OS : OK!!!</div>
+                                        <div class="card-text text-primary">OS : OK!!!</div>
                                     {% endif %}
                                 {% elif cadinfo.osversion == 'XP' %}
-                                    <div class="card-text">OS : OK!!!</div>
+                                    <div class="card-text text-primary">OS : OK!!!</div>
                                 {% elif user_pcinfo.os == 'XP' %}
-                                    <div class="card-text">OS : NO!!!</div>
+                                    <div class="card-text text-danger">OS : NO!!!</div>
+
                                 {% else %}
                                     {% if user_pcinfo.os >= cadinfo.osversion %}
-                                        <div class="card-text">OS : OK!!!</div>
+                                        <div class="card-text text-primary">OS : OK!!!</div>
                                     {% else %}
-                                        <div class="card-text">OS : NO!!!</div>
+                                        <div class="card-text text-danger">OS : NO!!!</div>
                                     {% endif %}
                                 {% endif %}
                             {% else %}
-                                    <div class="card-text">OS : NO!!!</div>
+                                    <div class="card-text text-danger">OS : NO!!!</div>
                             {% endif %}
                         </div>
-                        <div class="compare_disk">
+                        <hr/>
+                        <div class="compare_disk">          <!-- FREE DISK SPACE 용량 비교 -->
                             {% if cadinfo.diskspace %}
                                 {% if user_pcinfo.cdisk >= cadinfo.diskspace %}
-                                <div class="card-text">C_disk : OK!!!</div>
+                                <div class="card-text text-primary">C_disk : OK!!!</div>
                                 {% else %}
-                                <div class="card-text">C_disk : NO!!!</div>
+                                <div class="card-text text-danger">C_disk : NO!!!</div>
                                 {% endif %}
                                 {% if user_pcinfo.ddisk >= cadinfo.diskspace %}
-                                <div class="card-text">D_disk : OK!!!</div>
+                                <div class="card-text text-primary">D_disk : OK!!!</div>
                                 {% else %}
-                                <div class="card-text">D_disk : NO!!!</div>
+                                <div class="card-text text-danger">D_disk : NO!!!</div>
                                 {% endif %}
                                 {% if user_pcinfo.edisk >= cadinfo.diskspace %}
-                                <div class="card-text">E_disk : OK!!!</div>
+                                <div class="card-text text-primary">E_disk : OK!!!</div>
                                 {% else %}
-                                <div class="card-text">E_disk : NO!!!</div>
+                                <div class="card-text text-danger">E_disk : NO!!!</div>
                                 {% endif %}
                                 {% if user_pcinfo.fdisk >= cadinfo.diskspace %}
-                                <div class="card-text">F_disk : OK!!!</div>
+                                <div class="card-text text-primary">F_disk : OK!!!</div>
                                 {% else %}
-                                <div class="card-text">F_disk : NO!!!</div>
+                                <div class="card-text text-danger">F_disk : NO!!!</div>
                                 {% endif %}
                             {% else %}
-                                <div class="card-text">ALL_disk : OK!!!</div>
+                                <div class="card-text text-primary">ALL_disk : OK!!!</div>
                             {% endif %}
                         </div>
                     </div>

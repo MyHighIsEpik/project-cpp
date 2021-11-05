@@ -1,9 +1,11 @@
 from flask import Blueprint, url_for, render_template, flash, request, session, g
 from werkzeug.utils import redirect
-from cpp.forms import UserLoginForm
+from ..forms import UserLoginForm
 from werkzeug.security import check_password_hash
-from cpp.models import User
-from cpp.views.auth_views import login_required
+from ..models import User, Question, Answer, question_voter
+from ..views.auth_views import login_required
+from sqlalchemy import func
+from .. import db
 
 bp = Blueprint('main', __name__, url_prefix='/')
 

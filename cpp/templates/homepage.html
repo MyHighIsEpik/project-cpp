@@ -114,9 +114,15 @@
     </div>
 
 </div>
-
-
+<form id="searchForm1" method="get" action="{{ url_for('main.homepage') }}">
+    <input type="hidden" id="so1" name="so1" value="recent">
+</form>
+<form id="searchForm2" method="get" action="{{ url_for('main.homepage') }}">
+    <input type="hidden" id="so2" name="so2" value="recommend">
+</form>
+<form id="searchForm3" method="get" action="{{ url_for('main.homepage') }}">
+    <input type="hidden" id="so3" name="so3" value="popular">
+</form>
 {% endblock %}
 {% block script %}
-
 {% endblock %}
