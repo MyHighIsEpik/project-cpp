@@ -26,7 +26,7 @@
                         <div class="card-text">CPU : {{ user_pcinfo.cpu }}</div>
                         <div class="card-text">RAM(GB) : {{ user_pcinfo.ram }}</div>
                         <div class="card-text">OS : Windows {{ user_pcinfo.os }}</div>
-                        <div class="card-text">VIDEOCARD : {{ user_pcinfo.graphic }}</div>
+                        <div class="card-text">VIDEOCARD : {{ user_pcinfo.graphic1 }}</div>
                         <div class="card-text">FREE DISK SPACE(MB) : C: {{ user_pcinfo.cdisk }} | D: {{ user_pcinfo.ddisk }} | E: {{ user_pcinfo.edisk }} | F: {{ user_pcinfo.fdisk }}</div>
                     </div>
                 </div>
@@ -38,91 +38,103 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="compare_cpu">
-                            {% if gameinfo.cpu %}
-                                {% if gamecpu == None %}
-                                 <div class="card-text">CPU : OK!!!</div>
+                            {% if gamecpu != None %}
+                                {% if gamecpu == None %}     <!-- 프로그램 cpu 사양이 비었을 때 -->
+                                <div class="card-text text-primary">CPU : OK!!! / usercpu score : {{ usercpu.score }} /
+                                    gamecpu score : {{ gamecpu.score }}</div>
                                 {% elif usercpu.score >= gamecpu.score %}
-                                <div class="card-text">CPU : OK!!!</div>
+                                <div class="card-text text-primary">CPU : OK!!! / usercpu score : {{ usercpu.score }} /
+                                    gamecpu score : {{ gamecpu.score }}</div>
                                 {% else %}
-                                <div class="card-text">CPU : NO!!!</div>
+                                <div class="card-text text-danger">CPU : NO!!! / usercpu score : {{ usercpu.score }} /
+                                    gamecpu score : {{ gamecpu.score }}</div>
                                 {% endif %}
                             {% else %}
-                                <div class="card-text">CPU : OK!!!</div>
+                                <div class="card-text text-primary">CPU : OK!!! This program does not require cpu. </div>
                             {% endif %}
                         </div>
                         <div class="compare_video">
-                            {% if gameinfo.video %}
-                                {% if uservideo.score %}
-                                    {% if uservideo.score >= gamevideo.score %}
-                                    <div class="card-text">Video card : OK!!!</div>
-                                    {% else %}
-                                    <div class="card-text">Video card : NO!!!</div>
-                                    {% endif %}
+                            {% if gamevideo.score %}
+                                {% if uservideo.score >= gamevideo.score %}
+                                <div class="card-text text-primary">VIDEOCARD : OK!!! / uservideo score : {{ uservideo.score }} /
+                                game score : {{ gamevideo.score }}</div>
                                 {% else %}
-                                <div class="card-text">We don't have data of user's video card</div>
+                                <div class="card-text text-danger">VIDEOCARD : NO!!! / uservideo score : {{ uservideo.score }} /
+                                game score : {{ gamevideo.score }}</div>
                                 {% endif %}
                             {% else %}
-                            <div class="card-text">We don't have data of program's video card</div>
+                                <div class="card-text text-primary">VIDEOCARD : OK!!! / uservideo score : {{ uservideo.score }} /
+                                gamevideo score : {{ gamevideo.score }}</div>
                             {% endif %}
                         </div>
                         <div class="compare_ram">
                             {% if gameinfo.ram %}
                                 {% if user_pcinfo.ram >= gameinfo.ram %}
-                                <div class="card-text">RAM : OK!!!</div>
+                                <div class="card-text text-primary">RAM : OK!!!</div>
                                 {% else %}
-                                <div class="card-text">RAM : NO!!!</div>
+                                <div class="card-text text-danger">RAM : NO!!!</div>
                                 {% endif %}
                             {% else %}
-                                <div class="card-text">RAM : OK!!!</div>
+                                <div class="card-text text-primary">RAM : OK!!!</div>
                             {% endif %}
                         </div>
                         <div class="compare_os">
                             {% if gameinfo.osversion %}
-                                {% if gameinfo.osversion == 'Vista' %}
+                                {% if gameinfo.osversion == 'XP' %}
+                                <div class="card-text text-primary">OS : OK!!!</div>
+                                {% elif gameinfo.osversion == 'Vista' %}
                                     {% if user_pcinfo.os == 'XP' %}
-                                        <div class="card-text">OS : NO!!!</div>
+                                        <div class="card-text text-danger">OS : NO!!!</div>
                                     {% else %}
-                                        <div class="card-text">OS : OK!!!</div>
+                                        <div class="card-text text-primary">OS : OK!!!</div>
                                     {% endif %}
-                                {% elif gameinfo.osversion == 'XP' %}
-                                    <div class="card-text">OS : OK!!!</div>
-                                {% elif user_pcinfo.os == 'XP' %}
-                                    <div class="card-text">OS : NO!!!</div>
-                                {% else %}
-                                    {% if user_pcinfo.os >= gameinfo.osversion %}
-                                        <div class="card-text">OS : OK!!!</div>
+                                {% elif gameinfo.osversion == '8' %}
+                                    {% if user_pcinfo.os == 'Vista' or 'XP' %}
+                                        <div class="card-text text-danger">OS : NO!!!</div>
                                     {% else %}
-                                        <div class="card-text">OS : NO!!!</div>
+                                        <div class="card-text text-primary">OS : OK!!!</div>
+                                    {% endif %}
+                                {% elif gameinfo.osversion == '9' %}
+                                    {% if user_pcinfo.os == 'Vista' or 'XP' or '8' %}
+                                        <div class="card-text text-danger">OS : NO!!!</div>
+                                    {% else %}
+                                        <div class="card-text text-primary">OS : OK!!!</div>
+                                    {% endif %}
+                                {% elif gameinfo.osversion == '10' %}
+                                    {% if user_pcinfo.os == '10' %}
+                                        <div class="card-text text-primary">OS : OK!!!</div>
+                                    {% else %}
+                                        <div class="card-text text-danger">OS : NO!!!</div>
                                     {% endif %}
                                 {% endif %}
                             {% else %}
-                                    <div class="card-text">OS : NO!!!</div>
+                                    <div class="card-text text-danger">OS : NO!!!</div>
                             {% endif %}
                         </div>
                         <div class="compare_disk">
                             {% if gameinfo.diskspace %}
                                 {% if user_pcinfo.cdisk >= gameinfo.diskspace %}
-                                <div class="card-text">C_disk : OK!!!</div>
+                                <div class="card-text text-primary">C_disk : OK!!!</div>
                                 {% else %}
-                                <div class="card-text">C_disk : NO!!!</div>
+                                <div class="card-text text-danger">C_disk : NO!!!</div>
                                 {% endif %}
                                 {% if user_pcinfo.ddisk >= gameinfo.diskspace %}
-                                <div class="card-text">D_disk : OK!!!</div>
+                                <div class="card-text text-primary">D_disk : OK!!!</div>
                                 {% else %}
-                                <div class="card-text">D_disk : NO!!!</div>
+                                <div class="card-text text-danger">D_disk : NO!!!</div>
                                 {% endif %}
                                 {% if user_pcinfo.edisk >= gameinfo.diskspace %}
-                                <div class="card-text">E_disk : OK!!!</div>
+                                <div class="card-text text-primary">E_disk : OK!!!</div>
                                 {% else %}
-                                <div class="card-text">E_disk : NO!!!</div>
+                                <div class="card-text text-danger">E_disk : NO!!!</div>
                                 {% endif %}
                                 {% if user_pcinfo.fdisk >= gameinfo.diskspace %}
-                                <div class="card-text">F_disk : OK!!!</div>
+                                <div class="card-text text-primary">F_disk : OK!!!</div>
                                 {% else %}
-                                <div class="card-text">F_disk : NO!!!</div>
+                                <div class="card-text text-danger">F_disk : NO!!!</div>
                                 {% endif %}
                             {% else %}
-                                <div class="card-text">ALL_disk : OK!!!</div>
+                                <div class="card-text text-primary">ALL_disk : OK!!!</div>
                             {% endif %}
                         </div>
                     </div>

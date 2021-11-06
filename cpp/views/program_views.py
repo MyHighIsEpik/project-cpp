@@ -103,7 +103,7 @@ def cad_compare(cad_id):
     user_pcinfo = User_pcinfo.query.filter_by(codenum=g.user.codenum).first()
     cadcpu = Cpulist.query.filter_by(cpuname=cadinfo.cpu).first()
     usercpu = Cpulist.query.filter_by(cpuname=user_pcinfo.cpu).first()
-    uservideo = Videocard.query.filter_by(vcname=user_pcinfo.graphic).first()
+    uservideo = Videocard.query.filter_by(vcname=user_pcinfo.graphic1).first()
     cadvideo = Videocard.query.filter_by(vcname=cadinfo.videocard).first()
 
     return render_template('program/cad_compare.html', \
@@ -118,7 +118,7 @@ def illust_compare(illust_id):
     user_pcinfo = User_pcinfo.query.filter_by(codenum=g.user.codenum).first()
     illustcpu = Cpulist.query.filter_by(cpuname=illustinfo.cpu).first()
     usercpu = Cpulist.query.filter_by(cpuname=user_pcinfo.cpu).first()
-    uservideo = Videocard.query.filter_by(vcname=user_pcinfo.graphic).first()
+    uservideo = Videocard.query.filter_by(vcname=user_pcinfo.graphic1).first()
     illustvideo = Videocard.query.filter_by(vcname=illustinfo.videocard).first()
 
     return render_template('program/illust_compare.html', \
@@ -132,7 +132,7 @@ def game_compare(game_id):
     user_pcinfo = User_pcinfo.query.filter_by(codenum=g.user.codenum).first()
     gamecpu = Cpulist.query.filter_by(cpuname=gameinfo.cpu).first()
     usercpu = Cpulist.query.filter_by(cpuname=user_pcinfo.cpu).first()
-    uservideo = Videocard.query.filter_by(vcname=user_pcinfo.graphic).first()
+    uservideo = Videocard.query.filter_by(vcname=user_pcinfo.graphic1).first()
     gamevideo = Videocard.query.filter_by(vcname=gameinfo.videocard).first()
 
     return render_template('program/game_compare.html', \

@@ -8,8 +8,11 @@ def OsInfo():
     global os_name, os_version
     os_name = platform.system()
     os_version = platform.version()
+    full_osverion = os_version
+    os_version = os_version.split('.')
+    os_version = os_version[0]
 
-    return os_version
+    return os_version, full_osverion
 
 
 # psutil 라이브러리 이용해서 RAM 크기 파악 후 GB로 출력
@@ -48,7 +51,22 @@ def VideoInfo():
     video_info = video_info.split()
     del video_info[0]                       #제조사 부분 제거
     video_info = (' ').join(video_info)
-    #두 번째 그래픽카드가 있을 경우
+
+    return video_info
+
+
+def VideoInfo2():
+    global video_info, video_info1, video_info2
+    cmd = ['wmic', 'path', 'win32_VideoController', 'get', 'name']  # 스페이스를 기준으로 명령어를 잘라서 list로 만듦
+    fd_popen = subprocess.Popen(cmd, stdout=subprocess.PIPE).stdout  # 명령어 실행 후 반환되는 결과를 파일에 저장
+    video_info = fd_popen.read().strip()
+    fd_popen.close()  # 파일 닫기
+    video_inf = video_info.decode()  # video_info = 그래픽카드 페이지 출력 변수
+    video_info = video_inf.split('\n')[1]  # video_info1 = 그래픽카드 사양비교 변수
+    video_info = video_info.split()
+    del video_info[0]  # 제조사 부분 제거
+    video_info = (' ').join(video_info)
+    # 두 번째 그래픽카드가 있을 경우
     try:
         video_info1 = video_inf.split('\n')[2]
         video_info1 = video_info1.split()
@@ -57,9 +75,6 @@ def VideoInfo():
         return video_info1
     except IndexError:
         print("인덱싱 할 수 없습니다.")
-        
-
-    return video_info
 
 
 

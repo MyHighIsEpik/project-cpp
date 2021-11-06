@@ -25,8 +25,9 @@
                     <div class="card-body">
                         <div class="card-text">CPU : {{ user_pcinfo.cpu }}</div>
                         <div class="card-text">RAM(GB) : {{ user_pcinfo.ram }}</div>
-                        <div class="card-text">OS : Windows {{ user_pcinfo.os }}</div>
-                        <div class="card-text">VIDEOCARD : {{ user_pcinfo.graphic }}</div>
+                        <div class="card-text">OS : Windows {{ user_pcinfo.fullos }}</div>
+                        <div class="card-text">VIDEOCARD1 : {{ user_pcinfo.graphic1 }}</div>
+                        <div class="card-text">VIDEOCARD2 : {{ user_pcinfo.graphic2 }}</div>
                         <div class="card-text">FREE DISK SPACE(MB) : C: {{ user_pcinfo.cdisk }} | D: {{ user_pcinfo.ddisk }} | E: {{ user_pcinfo.edisk }} | F: {{ user_pcinfo.fdisk }}</div>
                     </div>
                 </div>
@@ -38,28 +39,34 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="compare_cpu">           <!-- CPU 비교 -->
-                            {% if cadinfo.cpu  %}
+                            {% if cadcpu != None %}
                                 {% if cadcpu == None %}     <!-- 프로그램 cpu 사양이 비었을 때 -->
-                                <div class="card-text text-primary">CPU : OK!!!</div>
+                                <div class="card-text text-primary">CPU : OK!!! / usercpu score : {{ usercpu.score }} /
+                                    cadcpu score : {{ cadcpu.score }}</div>
                                 {% elif usercpu.score >= cadcpu.score %}
-                                <div class="card-text text-primary">CPU : OK!!!</div>
+                                <div class="card-text text-primary">CPU : OK!!! / usercpu score : {{ usercpu.score }} /
+                                    cadcpu score : {{ cadcpu.score }}</div>
                                 {% else %}
-                                <div class="card-text text-danger">CPU : NO!!!</div>
+                                <div class="card-text text-danger">CPU : NO!!! / usercpu score : {{ usercpu.score }} /
+                                    cadcpu score : {{ cadcpu.score }}</div>
                                 {% endif %}
                             {% else %}
-                                <div class="card-text text-primary">CPU : OK!!!</div>
+                                <div class="card-text text-primary">CPU : OK!!! This program does not require cpu. </div>
                             {% endif %}
                         </div>
                         <hr/>
                         <div class="compare_video">         <!-- 그래픽카드 비교 -->
-                            {% if cadinfo.video %}
+                            {% if cadvideo.score %}
                                 {% if uservideo.score >= cadvideo.score %}
-                                <div class="card-text text-primary">VIDEOCARD : OK!!!</div>
+                                <div class="card-text text-primary">VIDEOCARD : OK!!! / uservideo score : {{ uservideo.score }} /
+                                cad score : {{ cadvideo.score }}</div>
                                 {% else %}
-                                <div class="card-text text-danger">VIDEOCARD : NO!!!</div>
+                                <div class="card-text text-danger">VIDEOCARD : NO!!! / uservideo score : {{ uservideo.score }} /
+                                cad score : {{ cadvideo.score }}</div>
                                 {% endif %}
                             {% else %}
-                                <div class="card-text text-primary">VIDEOCARD : OK!!!</div>
+                                <div class="card-text text-primary">VIDEOCARD : OK!!! / uservideo score : {{ uservideo.score }} /
+                                cadvideo score : {{ cadvideo.score }}</div>
                             {% endif %}
                         </div>
                         <hr/>
@@ -77,19 +84,28 @@
                         <hr/>
                         <div class="compare_os">            <!-- WINDOWS 버전 비교 /  XP<Vista<7<8<10 -->
                             {% if cadinfo.osversion %}
-                                {% if cadinfo.osversion == 'Vista' %}
+                                {% if cadinfo.osversion == 'XP' %}
+                                <div class="card-text text-primary">OS : OK!!!</div>
+                                {% elif cadinfo.osversion == 'Vista' %}
                                     {% if user_pcinfo.os == 'XP' %}
                                         <div class="card-text text-danger">OS : NO!!!</div>
                                     {% else %}
                                         <div class="card-text text-primary">OS : OK!!!</div>
                                     {% endif %}
-                                {% elif cadinfo.osversion == 'XP' %}
-                                    <div class="card-text text-primary">OS : OK!!!</div>
-                                {% elif user_pcinfo.os == 'XP' %}
-                                    <div class="card-text text-danger">OS : NO!!!</div>
-
-                                {% else %}
-                                    {% if user_pcinfo.os >= cadinfo.osversion %}
+                                {% elif cadinfo.osversion == '8' %}
+                                    {% if user_pcinfo.os == 'Vista' or 'XP' %}
+                                        <div class="card-text text-danger">OS : NO!!!</div>
+                                    {% else %}
+                                        <div class="card-text text-primary">OS : OK!!!</div>
+                                    {% endif %}
+                                {% elif cadinfo.osversion == '9' %}
+                                    {% if user_pcinfo.os == 'Vista' or 'XP' or '8' %}
+                                        <div class="card-text text-danger">OS : NO!!!</div>
+                                    {% else %}
+                                        <div class="card-text text-primary">OS : OK!!!</div>
+                                    {% endif %}
+                                {% elif cadinfo.osversion == '10' %}
+                                    {% if user_pcinfo.os == '10' %}
                                         <div class="card-text text-primary">OS : OK!!!</div>
                                     {% else %}
                                         <div class="card-text text-danger">OS : NO!!!</div>

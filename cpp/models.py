@@ -49,6 +49,7 @@ class User_pcinfo(db.Model):
     cpu = db.Column(db.Text, nullable=True)
     graphic1 = db.Column(db.Text, nullable=True)
     graphic2 = db.Column(db.Text, nullable=True)
+    fullos = db.Column(db.Text, nullable=True)
     os = db.Column(db.Text, nullable=True)
     ram = db.Column(db.Integer, nullable=True)
     cdisk = db.Column(db.Integer, nullable=True)
