@@ -45,13 +45,19 @@ def VideoInfo():
     fd_popen.close()  # 파일 닫기
     video_inf = video_info.decode()  # video_info = 그래픽카드 페이지 출력 변수
     video_info = video_inf.split('\n')[1]  # video_info1 = 그래픽카드 사양비교 변수
-    video_info1 = video_inf.split('\n')[2]
     video_info = video_info.split()
     del video_info[0]                       #제조사 부분 제거
     video_info = (' ').join(video_info)
-    video_info1 = video_info1.split()
-    del video_info1[0]
-    video_info1 = (' ').join(video_info1)
+    #두 번째 그래픽카드가 있을 경우
+    try:
+        video_info1 = video_inf.split('\n')[2]
+        video_info1 = video_info1.split()
+        del video_info1[0]
+        video_info1 = (' ').join(video_info1)
+        return video_info1
+    except IndexError:
+        print("인덱싱 할 수 없습니다.")
+        
 
     return video_info
 
