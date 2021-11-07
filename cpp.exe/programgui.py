@@ -14,14 +14,13 @@ root = tk.Tk()
 root.title("CPP")
 root.geometry("400x240")
 
+#mysql과 연결하는 부분
+conn = pymysql.connect(host='cppdb.cdoxiwetunqp.ap-northeast-2.rds.amazonaws.com', port=3306, user = 'cppadmin', password = '2021project', db = 'cppdb', charset = 'utf8mb4')
+
+curs = conn.cursor()
+
 #신규회원 PC사양 입력
 def insertcode():
-    input_codenum1 = ""
-    #mysql과 연결하는 부분
-    conn = pymysql.connect(host='cppdb.cdoxiwetunqp.ap-northeast-2.rds.amazonaws.com', port=3306, user = 'cppadmin', password = '2021project', db = 'cppdb', charset = 'utf8mb4')
-
-    curs = conn.cursor()
-
     input_codenum1 = edt1.get()
 
     try :           #입력받은 코드 값이 MySQL에 존재하는지 확인하는 코드
@@ -32,23 +31,18 @@ def insertcode():
         try :    
             curs.execute(
                 "INSERT INTO user_pcinfo (codenum, cpu, graphic1, graphic2, fullos, os, ram, cdisk, ddisk, edisk, fdisk) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (input_codenum1, cpu, graphic1, graphic2, fullos, os, ram, disk[0], disk[1], disk[2], disk[3]))
+
         except :
             messagebox.showerror('오류', '이미 존재하는 코드입니다!')
 
         else :
             messagebox.showinfo('성공', '데이터 입력 성공')
         curs.connection.commit()
-
     else :          #입력받은 코드 값이 없을 경우
         messagebox.showerror('오류', '코드가 잘못 되었거나 아직 회원가입을 하지않은 상태입니다. 다시 한 번 확인 해주세요!')
        
 #기존 회원 PC사양 업데이트 코드
 def updatecode():
-    #mysql과 연결하는 부분
-    conn = pymysql.connect(host='cppdb.cdoxiwetunqp.ap-northeast-2.rds.amazonaws.com', port=3306, user = 'cppadmin', password = '2021project', db = 'cppdb', charset = 'utf8mb4')
-
-    curs = conn.cursor()
-
     input_codenum2 = edt1.get()
 
     try :           #입력받은 코드 값이 MySQL에 존재하는지 확인하는 코드
@@ -64,15 +58,12 @@ def updatecode():
                 "INSERT INTO user_pcinfo (codenum, cpu, graphic1, graphic2, fullos, os, ram, cdisk, ddisk, edisk, fdisk) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (input_codenum2, cpu, graphic1, graphic2, fullos, os, ram, disk[0], disk[1], disk[2], disk[3]))
             curs.connection.commit()
 
-            
-                
         except :
             messagebox.showerror('오류', '이미 존재하는 코드입니다!')
 
         else :
             
             messagebox.showinfo('성공', '데이터 업데이트 성공')
-
     else :          #입력받은 코드 값이 없을 경우
         messagebox.showerror('오류', '코드가 잘못 되었거나 아직 회원가입을 하지않은 상태입니다. 다시 한 번 확인 해주세요!')
 
