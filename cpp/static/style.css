@@ -2,6 +2,29 @@
 body {
   background-color: #d3d4da;
 }
+
+.p1 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+}
+
+.p2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+}
+
+.boardwidth {
+  width: 354px
+}
+.boardbottom {
+  bottom: -25px
+}
   /* 누르면 보이게 하는 코드*/
 #check-btn { display: none; }
 #check-btn:checked ~ .menubars { display: block; }

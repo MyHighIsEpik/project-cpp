@@ -4,15 +4,15 @@
 <div class="container my-3">
     <div class="col-8 mx-auto">
         <h2 class="border-bottom py-2">사양 비교</h2>
-        <h2 class="border-bottom py-2">{{ illustinfo.name }}</h2>
+        <h2 class="border-bottom py-2">{{ illustinfo.name }} 권장사양</h2>
         <div class="row my-3">
             <div class="col-11">
                 <div class="card">
                     <div class="card-body">
                         <div class="card-text">CPU : {{ illustinfo.cpu }}</div>
-                        <div class="card-text">RAM(GB) : {{ illustinfo.ram }}</div>
-                        <div class="card-text">OS : {{ illustinfo.osversion }}</div>
                         <div class="card-text">VIDEOCARD : {{ illustinfo.videocard }}</div>
+                        <div class="card-text">RAM(GB) : {{ illustinfo.ram }}</div>
+                        <div class="card-text">Windows OS : {{ illustinfo.osversion }}</div>
                         <div class="card-text">FREE DISK SPACE(MB) : {{ illustinfo.diskspace }}</div>
                     </div>
                 </div>
@@ -24,10 +24,10 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-text">CPU : {{ user_pcinfo.cpu }}</div>
-                        <div class="card-text">RAM(GB) : {{ user_pcinfo.ram }}</div>
-                        <div class="card-text">OS : Windows {{ user_pcinfo.fullos }}</div>
                         <div class="card-text">VIDEOCARD1 : {{ user_pcinfo.graphic1 }}</div>
                         <div class="card-text">VIDEOCARD2 : {{ user_pcinfo.graphic2 }}</div>
+                        <div class="card-text">RAM(GB) : {{ user_pcinfo.ram }}</div>
+                        <div class="card-text">OS : Windows {{ user_pcinfo.fullos }}</div>
                         <div class="card-text">FREE DISK SPACE(MB) : C: {{ user_pcinfo.cdisk }} | D: {{ user_pcinfo.ddisk }} | E: {{ user_pcinfo.edisk }} | F: {{ user_pcinfo.fdisk }}</div>
                     </div>
                 </div>

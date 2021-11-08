@@ -10,10 +10,13 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-text">CPU : {{ questioner_pcinfo.user_pcinfo.cpu }}</div>
-                        <div class="card-text">RAM(GB) : {{ questioner_pcinfo.user_pcinfo.ram }}</div>
-                        <div class="card-text">OS : {{ questioner_pcinfo.user_pcinfo.fullos }}</div>
                         <div class="card-text">VIDEOCARD1 : {{ questioner_pcinfo.user_pcinfo.graphic1 }}</div>
-                        <div class="card-text">VIDEOCARD2 : {{ questioner_pcinfo.user_pcinfo.graphic2 }}</div>
+                        {% if questioner_pcinfo.user_pcinfo.graphic2 %}
+                            <div class="card-text">VIDEOCARD2 : {{ questioner_pcinfo.user_pcinfo.graphic2 }}</div>
+                        {% endif %}
+
+                        <div class="card-text">RAM(GB) : {{ questioner_pcinfo.user_pcinfo.ram }}</div>
+                        <div class="card-text">Windows OS : {{ questioner_pcinfo.user_pcinfo.fullos }}</div>
                     </div>
                 </div>
             </div>
@@ -24,10 +27,10 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-text">CPU : {{ user_pcinfo.cpu }}</div>
-                        <div class="card-text">RAM(GB) : {{ user_pcinfo.ram }}</div>
-                        <div class="card-text">OS : Windows {{ user_pcinfo.fullos }}</div>
                         <div class="card-text">VIDEOCARD1 : {{ user_pcinfo.graphic1 }}</div>
                         <div class="card-text">VIDEOCARD2 : {{ user_pcinfo.graphic2 }}</div>
+                        <div class="card-text">RAM(GB) : {{ user_pcinfo.ram }}</div>
+                        <div class="card-text">OS : Windows {{ user_pcinfo.fullos }}</div>
                         <div class="card-text">FREE DISK SPACE(MB) : C: {{ user_pcinfo.cdisk }} | D: {{ user_pcinfo.ddisk }} | E: {{ user_pcinfo.edisk }} | F: {{ user_pcinfo.fdisk }}</div>
                     </div>
                 </div>

@@ -38,9 +38,9 @@
                         <ul class="menubars">
                             <small>
                                 <li>CPU : {{ question.user_pcinfo.cpu }}</li>
+                                <li>Videocard : {{ question.user_pcinfo.graphic }}</li>
                                 <li>RAM(GB) : {{ question.user_pcinfo.cpu }}</li>
                                 <li>OSversion : {{ question.user_pcinfo.fullos }}</li>
-                                <li>Videocard : {{ question.user_pcinfo.graphic }}</li>
                                 <li>FREE DISK SPACE(MB) : C: {{ question.user_pcinfo.cdisk }} | D: {{ question.user_pcinfo.ddisk }} | E: {{ question.user_pcinfo.edisk }} | F: {{ question.user_pcinfo.fdisk }}</li>
                                 <a href="{{ url_for('question.question_compare', question_id=question.id ) }}" class="btn">내 PC와 비교하기 >></a>
                             </small>

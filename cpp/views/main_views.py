@@ -36,5 +36,23 @@ def main():
 @bp.route('/homepage/')
 @login_required
 def homepage():
-    return render_template('/homepage.html')
 
+
+    # 정렬
+    # 추천많은글
+    sub_query = db.session.query(question_voter.c.question_id, func.count('*').label('num_voter')) \
+        .group_by(question_voter.c.question_id).subquery()
+    question_list1 = Question.query \
+        .outerjoin(sub_query, Question.id == sub_query.c.question_id) \
+        .order_by(sub_query.c.num_voter.desc(), Question.create_date.desc())
+    # 댓글많은글
+    sub_query = db.session.query(Answer.question_id, func.count('*').label('num_answer')) \
+        .group_by(Answer.question_id).subquery()
+    question_list2 = Question.query \
+        .outerjoin(sub_query, Question.id == sub_query.c.question_id) \
+        .order_by(sub_query.c.num_answer.desc(), Question.create_date.desc())
+    # 최신글
+    question_list3 = Question.query.order_by(Question.create_date.desc())
+
+    return render_template('/homepage.html', question_list1=question_list1, question_list2=question_list2, \
+                           question_list3=question_list3)

@@ -65,15 +65,12 @@
                 <div class="card-header py-3 text-white bg-dark border-secondary">
                     <h4 class="my-0 fw-normal">최신글</h4>
                 </div>
-                <div class="card-body">
-                    <h1 class="card-title pricing-card-title">test1<small class="text-muted fw-light"></small></h1>
-                    <ul class="list-unstyled mt-3 mb-4">
-                        <li>여기에</li>
-                        <li>게시판 글을</li>
-                        <li>표시하고 싶은데</li>
-                        <li>과연 될까</li>
+                <div class="card-body position-relative" style="height: 258px">
+                    <h1 class="card-title pricing-card-title"><small class="text-muted fw-light p1">{{ question_list3.first().subject }}</small></h1>
+                    <ul class="list-unstyled mt-3 mb-4 p2">
+                        <li>{{ question_list3.first().content }}</li>
                     </ul>
-                    <a class="w-100 btn btn-lg btn-secondary" href="{{ url_for('question._list') }}">해당 게시글로 이동 &raquo;</a>
+                    <a class="w-100 btn btn-lg btn-secondary position-absolute translate-middle boardbottom" href="{{ url_for('question.detail', question_id=question_list3.first().id) }}">해당 게시글로 이동 &raquo;</a>
                 </div>
             </div>
         </div>
@@ -82,15 +79,12 @@
                 <div class="card-header py-3 text-white bg-dark border-secondary">
                     <h4 class="my-0 fw-normal">추천 많은 글</h4>
                 </div>
-                <div class="card-body">
-                    <h1 class="card-title pricing-card-title">test2<small class="text-muted fw-light"></small></h1>
-                    <ul class="list-unstyled mt-3 mb-4">
-                        <li>여기에</li>
-                        <li>게시판 글을</li>
-                        <li>표시하고 싶은데</li>
-                        <li>과연 될까</li>
+                <div class="card-body position-relative" style="height: 258px">
+                    <h1 class="card-title pricing-card-title"><small class="text-muted fw-light p1">{{ question_list1.first().subject }}</small></h1>
+                    <ul class="list-unstyled mt-3 mb-4 p2">
+                        <li>{{ question_list1.first().content }}</li>
                     </ul>
-                    <a class="w-100 btn btn-lg btn-secondary" href="{{ url_for('question._list') }}">해당 게시글로 이동 &raquo;</a>
+                    <a class="w-100 btn btn-lg btn-secondary position-absolute translate-middle boardbottom" href="{{ url_for('question.detail', question_id=question_list1.first().id) }}">해당 게시글로 이동 &raquo;</a>
                 </div>
             </div>
         </div>
@@ -99,15 +93,12 @@
                 <div class="card-header py-3 text-white bg-dark border-secondary">
                     <h4 class="my-0 fw-normal">댓글 많은 글</h4>
                 </div>
-                <div class="card-body">
-                    <h1 class="card-title pricing-card-title">test3<small class="text-muted fw-light"></small></h1>
+                <div class="card-body position-relative" style="height: 258px">
+                    <h1 class="card-title pricing-card-title"><small class="text-muted fw-light">{{ question_list2.first().subject }}</small></h1>
                     <ul class="list-unstyled mt-3 mb-4">
-                        <li>여기에</li>
-                        <li>게시판 글을</li>
-                        <li>표시하고 싶은데</li>
-                        <li>과연 될까</li>
+                        <li>{{ question_list2.first().content }}</li>
                     </ul>
-                    <a class="w-100 btn btn-lg btn-secondary" href="{{ url_for('question._list') }}">해당 게시글로 이동 &raquo;</a>
+                    <a class="w-100 btn btn-lg btn-secondary position-absolute translate-middle boardbottom" href="{{ url_for('question.detail', question_id=question_list2.first().id) }}">해당 게시글로 이동 &raquo;</a>
                 </div>
             </div>
         </div>
