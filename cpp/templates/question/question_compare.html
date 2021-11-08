@@ -4,19 +4,19 @@
 <div class="container my-3">
     <div class="col-8 mx-auto">
         <h1 class="border-bottom py-2">사용자 간 사양 비교</h1>
-        <h2 class="border-bottom py-2">게시물 작성자 {{ questioner_pcinfo.user.nickname }}</h2>
+        <h2 class="border-bottom py-2">게시물 작성자 {{ questioner_pcinfo.nickname }}</h2>
         <div class="row my-3">
             <div class="col-11">
                 <div class="card">
                     <div class="card-body">
-                        <div class="card-text">CPU : {{ questioner_pcinfo.user_pcinfo.cpu }}</div>
-                        <div class="card-text">VIDEOCARD1 : {{ questioner_pcinfo.user_pcinfo.graphic1 }}</div>
-                        {% if questioner_pcinfo.user_pcinfo.graphic2 %}
-                            <div class="card-text">VIDEOCARD2 : {{ questioner_pcinfo.user_pcinfo.graphic2 }}</div>
+                        <div class="card-text">CPU : {{ questioner_pcinfo.cpu }}</div>
+                        <div class="card-text">VIDEOCARD1 : {{ questioner_pcinfo.graphic1 }}</div>
+                        {% if questioner_pcinfo.graphic2 %}
+                            <div class="card-text">VIDEOCARD2 : {{ questioner_pcinfo.graphic2 }}</div>
                         {% endif %}
 
-                        <div class="card-text">RAM(GB) : {{ questioner_pcinfo.user_pcinfo.ram }}</div>
-                        <div class="card-text">Windows OS : {{ questioner_pcinfo.user_pcinfo.fullos }}</div>
+                        <div class="card-text">RAM(GB) : {{ questioner_pcinfo.ram }}</div>
+                        <div class="card-text">Windows OS : {{ questioner_pcinfo.fullos }}</div>
                     </div>
                 </div>
             </div>
@@ -70,8 +70,8 @@
                         </div>
                         <hr/>
                         <div class="compare_ram">           <!-- RAM 비교 -->
-                            {% if questioner_pcinfo.user_pcinfo.ram %}
-                                {% if user_pcinfo.ram >= questioner_pcinfo.user_pcinfo.ram %}
+                            {% if questioner_pcinfo.ram %}
+                                {% if user_pcinfo.ram >= questioner_pcinfo.ram %}
                                 <div class="card-text text-primary">RAM : Your RAM is Better!</div>
                                 {% else %}
                                 <div class="card-text text-danger">RAM : Your RAM is Lower!</div>
@@ -82,34 +82,34 @@
                         </div>
                         <hr/>
                         <div class="compare_os">            <!-- WINDOWS 버전 비교 /  XP<Vista<7<8<10 -->
-                            {% if questioner_pcinfo.user_pcinfo.os %}
-                                {% if questioner_pcinfo.user_pcinfo.os == 'XP' %}
+                            {% if questioner_pcinfo.os %}
+                                {% if questioner_pcinfo.os == 'XP' %}
                                 <div class="card-text text-primary">OS : Your OS is Better!</div>
-                                {% elif questioner_pcinfo.user_pcinfo.os == 'Vista' %}
+                                {% elif questioner_pcinfo.os == 'Vista' %}
                                     {% if user_pcinfo.os == 'XP' %}
                                         <div class="card-text text-danger">OS : Your OS is Lower!</div>
                                     {% else %}
                                         <div class="card-text text-primary">OS : Your OS is Better!</div>
                                     {% endif %}
-                                {% elif questioner_pcinfo.user_pcinfo.os == '7' %}
+                                {% elif questioner_pcinfo.os == '7' %}
                                     {% if ((user_pcinfo.os == 'Vista') or (user_pcinfo.os == 'XP')) %}
                                         <div class="card-text text-danger">OS : Your OS is Lower!</div>
                                     {% else %}
                                         <div class="card-text text-primary">OS : Your OS is Better!</div>
                                     {% endif %}
-                                {% elif questioner_pcinfo.user_pcinfo.os == '8' %}
+                                {% elif questioner_pcinfo.os == '8' %}
                                     {% if ((user_pcinfo.os == 'Vista') or (user_pcinfo.os == 'XP') or (user_pcinfo.os == '7')) %}
                                         <div class="card-text text-danger">OS : Your OS is Lower!</div>
                                     {% else %}
                                         <div class="card-text text-primary">OS : Your OS is Better!</div>
                                     {% endif %}
-                                {% elif questioner_pcinfo.user_pcinfo.os == '9' %}
+                                {% elif questioner_pcinfo.os == '9' %}
                                     {% if ((user_pcinfo.os == '9') or (user_pcinfo.os == '10')) %}
                                         <div class="card-text text-primary">OS : Your OS is Better!</div>
                                     {% else %}
                                         <div class="card-text text-danger">OS : Your OS is Lower!</div>
                                     {% endif %}
-                                {% elif questioner_pcinfo.user_pcinfo.os == '10' %}
+                                {% elif questioner_pcinfo.os == '10' %}
                                     {% if user_pcinfo.os == '10' %}
                                         <div class="card-text text-primary">OS : Your OS is Better!</div>
                                     {% else %}

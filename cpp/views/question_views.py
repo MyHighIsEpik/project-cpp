@@ -105,15 +105,19 @@ def delete(question_id):
 @bp.route('/question/detail/<int:question_id>/compare/')
 @login_required
 def question_compare(question_id):
-    questioner_pcinfo = Question.query.get_or_404(question_id)
+    question = Question.query.get_or_404(question_id)
+    # 게시글 작성자
+    questioner = User.query.filter_by(id=question.user_id).first()
+    questioner_pcinfo = User_pcinfo.query.filter_by(codenum=questioner.codenum).first()
+    questioner_cpu = Cpulist.query.filter_by(cpuname=questioner_pcinfo.cpu).first()
+    questioner_video = Videocard.query.filter_by(vcname=questioner_pcinfo.graphic1).first()
+    # 현재 사용자
     user_pcinfo = User_pcinfo.query.filter_by(codenum=g.user.codenum).first()
-    questioner_cpu = Cpulist.query.filter_by(cpuname=questioner_pcinfo.user_pcinfo.cpu).first()
     user_cpu = Cpulist.query.filter_by(cpuname=user_pcinfo.cpu).first()
-    questioner_video = Videocard.query.filter_by(vcname=questioner_pcinfo.user_pcinfo.graphic1).first()
     user_video = Videocard.query.filter_by(vcname=user_pcinfo.graphic1).first()
 
     return render_template('question/question_compare.html', \
-                           questioner_pcinfo=questioner_pcinfo, user_pcinfo=user_pcinfo, \
-                           user_cpu=user_cpu, user_video=user_video, questioner_video=questioner_video, \
-                           questioner_cpu=questioner_cpu)
+                           questioner_pcinfo=questioner_pcinfo, questioner_cpu=questioner_cpu, \
+                           questioner_video=questioner_video, user_pcinfo=user_pcinfo, user_cpu=user_cpu,  \
+                           user_video=user_video)
 
