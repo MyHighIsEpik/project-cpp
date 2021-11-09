@@ -56,26 +56,21 @@
                         </div>
                         <hr/>
                         <div>
-                        <!--
-                        <script>
-                        if (illustinfo.videocard){
-                            if (illustinfo.videocard.includes( 'OpenGL' )){
-                                document.write( "<div>OpenGL may vary by graphics card, so check it out for yourself!" + "</div>" );
-                            }else if(illustinfo.videocard.includes( 'DirectX 11' )){
-                                document.write( "<div>If you are using windows 7 or later, you are using direct11." + "</div>" );
-                            }else if(illustinfo.videocard.includes( 'DirectX 12' )){
-                                document.write( "<div>If you are using windows 10 or later, you are using direct12." + "</div>" );
-                            }else if(illustinfo.videocard.includes( 'DirectX' )){
-                                document.write( "<div>If you are using windows 7 or later, you will have to reinstall this version of directx." + "</div>" );
-                            }else {document.write( "<div>If you are using windows 7 or later, you will have to reinstall this version of directx." + "</div>" );
-                            }
-                        else{
-                            document.write( "<div>Videocard : OK!!!" + "</div>" );
-                        }
-                        </script>
-                        -->
-                            {% if illustvideo %}
-
+                            {% if illustinfo.videocard %}
+                                {% if 'OpenGL' in illustinfo.videocard %}
+                                    <div>OpenGL may vary by graphics card, so check it out for yourself!</div>
+                                {% elif 'DirectX 11' in illustinfo.videocard %}
+                                    <div>If you are using windows 7 or later, you are using direct11.</div>
+                                {% elif 'DirectX 12' in illustinfo.videocard %}
+                                    <div>If you are using windows 10 or later, you are using direct12.</div>
+                                {% elif 'DirectX' in illustinfo.videocard %}
+                                    <div>If you are using windows 7 or later, you will have to reinstall this version of directx.</div>
+                                {% else %}
+                                    <div>If you are using windows 7 or later, you will have to reinstall this version of directx.</div>
+                                {% endif %}
+                            {% else %}
+                                <div class="card-text text-primary">Videocard : OK!!!</div>
+                            {% endif %}
                         </div>
                         <hr/>
                         <div>

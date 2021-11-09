@@ -19,6 +19,27 @@ conn = pymysql.connect(host='cppdb.cdoxiwetunqp.ap-northeast-2.rds.amazonaws.com
 
 curs = conn.cursor()
 
+sql = "Select * from videocard where vcname like %s"
+grap1 = ['%' + graphic1 + '%']
+curs.execute(sql, grap1)
+a = curs.fetchone()
+score1 = a[2]
+
+
+sql = "Select * from videocard where vcname like %s"
+grap2 = ['%' + graphic2 + '%']
+curs.execute(sql, grap2)
+b = curs.fetchone()
+score2 = b[2]
+
+if score2 != NONE :
+    if score1 < score2 :
+        temp = graphic1
+        graphic1 = graphic2
+        graphic2 = temp
+
+
+
 #신규회원 PC사양 입력
 def insertcode():
     input_codenum1 = edt1.get()
@@ -27,6 +48,7 @@ def insertcode():
         curs.execute(
             "INSERT INTO user (codenum) VALUES (%s)", (input_codenum1)
         )
+        
     except :        #입력받은 코드 값이 있을 경우 try에서의 insert문은 실행이 안 됨
         try :    
             curs.execute(
