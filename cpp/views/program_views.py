@@ -94,13 +94,17 @@ def cad_compare(cad_id):
     cadinfo = Cadinfo.query.get_or_404(cad_id)
     cadcpu = Cpulist.query.filter_by(cpuname=cadinfo.cpu).first()
     cadvideo = Videocard.query.filter_by(vcname=cadinfo.videocard).first()
+    cadinfo_os = cadinfo.osversion.split('.')
+    cadinfo_os = cadinfo_os[0]
     # 현재 사용자
     user_pcinfo = User_pcinfo.query.filter_by(codenum=g.user.codenum).first()
     usercpu = Cpulist.query.filter_by(cpuname=user_pcinfo.cpu).first()
-    uservideo = Videocard.query.filter_by(vcname=user_pcinfo.graphic1).first()
+    # uservideo = Videocard.query.filter_by(vcname=user_pcinfo.graphic1).first()
+    a = '%' + user_pcinfo.graphic1 +'%'
+    uservideo = Videocard.query.filter(Videocard.vcname.like(a)).first()
 
     return render_template('program/cad_compare.html', \
-                           cadinfo=cadinfo, cadcpu=cadcpu, cadvideo=cadvideo, \
+                           cadinfo=cadinfo, cadcpu=cadcpu, cadvideo=cadvideo, cadinfo_os=cadinfo_os, \
                            user_pcinfo=user_pcinfo, usercpu=usercpu, uservideo=uservideo)
 
 
@@ -111,13 +115,17 @@ def game_compare(game_id):
     gameinfo = Gameinfo.query.get_or_404(game_id)
     gamecpu = Cpulist.query.filter_by(cpuname=gameinfo.cpu).first()
     gamevideo = Videocard.query.filter_by(vcname=gameinfo.videocard).first()
+    gameinfo_os = gameinfo.osversion.split('.')
+    gameinfo_os = gameinfo_os[0]
     # 현재 사용자
     user_pcinfo = User_pcinfo.query.filter_by(codenum=g.user.codenum).first()
     usercpu = Cpulist.query.filter_by(cpuname=user_pcinfo.cpu).first()
-    uservideo = Videocard.query.filter_by(vcname=user_pcinfo.graphic1).first()
+    # uservideo = Videocard.query.filter_by(vcname=user_pcinfo.graphic1).first()
+    a = '%' + user_pcinfo.graphic1 +'%'
+    uservideo = Videocard.query.filter(Videocard.vcname.like(a)).first()
 
     return render_template('program/game_compare.html', \
-                           gameinfo=gameinfo, gamecpu=gamecpu, gamevideo=gamevideo, \
+                           gameinfo=gameinfo, gamecpu=gamecpu, gamevideo=gamevideo, gameinfo_os=gameinfo_os, \
                            user_pcinfo=user_pcinfo, usercpu=usercpu, uservideo=uservideo)
 
 
@@ -128,13 +136,17 @@ def illust_compare(illust_id):
     illustinfo = Illustinfo.query.get_or_404(illust_id)
     illustcpu = Cpulist.query.filter_by(cpuname=illustinfo.cpu).first()
     illustvideo = Videocard.query.filter_by(vcname=illustinfo.videocard).first()
+    illustinfo_os = illustinfo.osversion.split('.')
+    illustinfo_os = illustinfo_os[0]
     # 현재 사용자
     user_pcinfo = User_pcinfo.query.filter_by(codenum=g.user.codenum).first()
     usercpu = Cpulist.query.filter_by(cpuname=user_pcinfo.cpu).first()
-    uservideo = Videocard.query.filter_by(vcname=user_pcinfo.graphic1).first()
+    # uservideo = Videocard.query.filter_by(vcname=user_pcinfo.graphic1).first()
+    a = '%' + user_pcinfo.graphic1 +'%'
+    uservideo = Videocard.query.filter(Videocard.vcname.like(a)).first()
 
     return render_template('program/illust_compare.html', \
                            illustinfo=illustinfo, illustvideo=illustvideo, illustcpu=illustcpu, \
-                           user_pcinfo=user_pcinfo, usercpu=usercpu, uservideo=uservideo)
+                           illustinfo_os=illustinfo_os, user_pcinfo=user_pcinfo, usercpu=usercpu, uservideo=uservideo)
 
 

@@ -86,34 +86,34 @@
                         </div>
                         <hr/>
                         <div>
-                            {% if illustinfo.osversion %}
-                                {% if illustinfo.osversion == 'XP' %}
+                            {% if illustinfo_os %}
+                                {% if illustinfo_os == 'XP' %}
                                 <div class="card-text text-primary">OS : OK!!!</div>
-                                {% elif illustinfo.osversion == 'Vista' %}
+                                {% elif illustinfo_os == 'Vista' %}
                                     {% if user_pcinfo.os == 'XP' %}
                                         <div class="card-text text-danger">OS : NO!!!</div>
                                     {% else %}
                                         <div class="card-text text-primary">OS : OK!!!</div>
                                     {% endif %}
-                                {% elif illustinfo.osversion == '7' %}
+                                {% elif illustinfo_os == '7' %}
                                     {% if ((user_pcinfo.os == 'Vista') or (user_pcinfo.os == 'XP')) %}
                                         <div class="card-text text-danger">OS : NO!!!</div>
                                     {% else %}
                                         <div class="card-text text-primary">OS : OK!!!</div>
                                     {% endif %}
-                                {% elif illustinfo.osversion == '8' %}
+                                {% elif illustinfo_os == '8' %}
                                     {% if ((user_pcinfo.os == 'Vista') or (user_pcinfo.os == 'XP') or (user_pcinfo.os == '7')) %}
                                         <div class="card-text text-danger">OS : NO!!!</div>
                                     {% else %}
                                         <div class="card-text text-primary">OS : OK!!!</div>
                                     {% endif %}
-                                {% elif illustinfo.osversion == '9' %}
+                                {% elif illustinfo_os == '9' %}
                                     {% if ((user_pcinfo.os == '9') or (user_pcinfo.os == '10')) %}
                                         <div class="card-text text-primary">OS : OK!!!</div>
                                     {% else %}
                                         <div class="card-text text-danger">OS : NO!!!</div>
                                     {% endif %}
-                                {% elif illustinfo.osversion == '10' %}
+                                {% elif illustinfo_os == '10' %}
                                     {% if user_pcinfo.os == '10' %}
                                         <div class="card-text text-primary">OS : OK!!!</div>
                                     {% else %}
