@@ -12,7 +12,7 @@
                         <div class="card-text">CPU : {{ gameinfo.cpu }}</div>
                         <div class="card-text">VIDEOCARD : {{ gameinfo.videocard }}</div>
                         <div class="card-text">RAM(GB) : {{ gameinfo.ram }}</div>
-                        <div class="card-text">Windows OS : {{ gameinfo.osversion }}</div>
+                        <div class="card-text">OS : Windows {{ gameinfo.osversion }}</div>
                         <div class="card-text">FREE DISK SPACE(MB) : {{ gameinfo.diskspace }}</div>
                     </div>
                 </div>
@@ -25,7 +25,10 @@
                     <div class="card-body">
                         <div class="card-text">CPU : {{ user_pcinfo.cpu }}</div>
                         <div class="card-text">VIDEOCARD1 : {{ user_pcinfo.graphic1 }}</div>
-                        <div class="card-text">VIDEOCARD2 : {{ user_pcinfo.graphic2 }}</div>
+                        {% if user_pcinfo.graphic2 %}
+                            <div class="card-text">VIDEOCARD2 : {{ user_pcinfo.graphic2 }}</div>
+                        {% endif %}
+
                         <div class="card-text">RAM(GB) : {{ user_pcinfo.ram }}</div>
                         <div class="card-text">OS : Windows {{ user_pcinfo.fullos }}</div>
                         <div class="card-text">FREE DISK SPACE(MB) : C: {{ user_pcinfo.cdisk }} | D: {{ user_pcinfo.ddisk }} | E: {{ user_pcinfo.edisk }} | F: {{ user_pcinfo.fdisk }}</div>
@@ -38,24 +41,21 @@
             <div class="col-11">
                 <div class="card">
                     <div class="card-body">
-                        <div class="compare_cpu">
-                            {% if gamecpu != None %}
-                                {% if gamecpu == None %}     <!-- 프로그램 cpu 사양이 비었을 때 -->
-                                <div class="card-text text-primary">CPU : OK!!! / usercpu score : {{ usercpu.score }} /
-                                    gamecpu score : {{ gamecpu.score }}</div>
-                                {% elif usercpu.score >= gamecpu.score %}
+                         <div>           <!-- CPU 비교 -->
+                            {% if gamecpu != None %}         <!-- 프로그램 cpu 사양이 있을 때 -->
+                                {% if usercpu.score >= gamecpu.score %}
                                 <div class="card-text text-primary">CPU : OK!!! / usercpu score : {{ usercpu.score }} /
                                     gamecpu score : {{ gamecpu.score }}</div>
                                 {% else %}
                                 <div class="card-text text-danger">CPU : NO!!! / usercpu score : {{ usercpu.score }} /
                                     gamecpu score : {{ gamecpu.score }}</div>
                                 {% endif %}
-                            {% else %}
-                                <div class="card-text text-primary">CPU : OK!!! This program does not require cpu. </div>
+                            {% else %}                      <!-- 프로그램 cpu 사양이 비었을 때 -->
+                                <div class="card-text text-primary">CPU : OK!!!</div>
                             {% endif %}
                         </div>
                         <hr/>
-                        <div class="compare_video">
+                        <div>
                             {% if gamevideo.score %}
                                 {% if uservideo.score >= gamevideo.score %}
                                 <div class="card-text text-primary">VIDEOCARD : OK!!! / uservideo score : {{ uservideo.score }} /
@@ -70,7 +70,7 @@
                             {% endif %}
                         </div>
                         <hr/>
-                        <div class="compare_ram">
+                        <div>
                             {% if gameinfo.ram %}
                                 {% if user_pcinfo.ram >= gameinfo.ram %}
                                 <div class="card-text text-primary">RAM : OK!!!</div>
@@ -82,7 +82,7 @@
                             {% endif %}
                         </div>
                         <hr/>
-                        <div class="compare_os">
+                        <div>
                             {% if gameinfo.osversion %}
                                 {% if gameinfo.osversion == 'XP' %}
                                 <div class="card-text text-primary">OS : OK!!!</div>
@@ -122,7 +122,7 @@
                             {% endif %}
                         </div>
                         <hr/>
-                        <div class="compare_disk">
+                        <div>
                             {% if gameinfo.diskspace %}
                                 {% if user_pcinfo.cdisk >= gameinfo.diskspace %}
                                 <div class="card-text text-primary">C_disk : OK!!!</div>

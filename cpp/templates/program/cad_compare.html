@@ -25,9 +25,12 @@
                     <div class="card-body">
                         <div class="card-text">CPU : {{ user_pcinfo.cpu }}</div>
                         <div class="card-text">VIDEOCARD1 : {{ user_pcinfo.graphic1 }}</div>
-                        <div class="card-text">VIDEOCARD2 : {{ user_pcinfo.graphic2 }}</div>
+                        {% if user_pcinfo.graphic2 %}
+                            <div class="card-text">VIDEOCARD2 : {{ user_pcinfo.graphic2 }}</div>
+                        {% endif %}
+
                         <div class="card-text">RAM(GB) : {{ user_pcinfo.ram }}</div>
-                        <div class="card-text">Windows OS : {{ user_pcinfo.fullos }}</div>
+                        <div class="card-text">OS : Windows {{ user_pcinfo.fullos }}</div>
                         <div class="card-text">FREE DISK SPACE(MB) : C: {{ user_pcinfo.cdisk }} | D: {{ user_pcinfo.ddisk }} | E: {{ user_pcinfo.edisk }} | F: {{ user_pcinfo.fdisk }}</div>
                     </div>
                 </div>
@@ -38,7 +41,7 @@
             <div class="col-11">
                 <div class="card">
                     <div class="card-body">
-                        <div class="compare_cpu">           <!-- CPU 비교 -->
+                        <div>           <!-- CPU 비교 -->
                             {% if cadcpu != None %}         <!-- 프로그램 cpu 사양이 있을 때 -->
                                 {% if usercpu.score >= cadcpu.score %}
                                 <div class="card-text text-primary">CPU : OK!!! / usercpu score : {{ usercpu.score }} /
@@ -52,8 +55,8 @@
                             {% endif %}
                         </div>
                         <hr/>
-                        <div class="compare_video">         <!-- 그래픽카드 비교 -->
-                            {% if cadvideo.score %}         <!-- 프로그램 cpu 사양이 있을 때 -->
+                        <div>         <!-- 그래픽카드 비교 -->
+                            {% if cadvideo.score %}         <!-- 프로그램 videocard 사양이 있을 때 -->
                                 {% if uservideo.score >= cadvideo.score %}
                                 <div class="card-text text-primary">VIDEOCARD : OK!!! / uservideo score : {{ uservideo.score }} /
                                 cad score : {{ cadvideo.score }}</div>
@@ -61,13 +64,13 @@
                                 <div class="card-text text-danger">VIDEOCARD : NO!!! / uservideo score : {{ uservideo.score }} /
                                 cad score : {{ cadvideo.score }}</div>
                                 {% endif %}
-                            {% else %}                      <!-- 프로그램 cpu 사양이 비었을 때 -->
+                            {% else %}                      <!-- 프로그램 videocard 사양이 비었을 때 -->
                                 <div class="card-text text-primary">VIDEOCARD : OK!!!</div>
                             {% endif %}
                         </div>
                         <hr/>
-                        <div class="compare_ram">           <!-- RAM 비교 -->
-                            {% if cadinfo.ram %}
+                        <div>           <!-- RAM 비교 -->
+                            {% if cadinfo.ram %}         <!-- 프로그램 RAM 사양이 있을 때 -->
                                 {% if user_pcinfo.ram >= cadinfo.ram %}
                                 <div class="card-text text-primary">RAM : OK!!!</div>
                                 {% else %}
@@ -78,7 +81,7 @@
                             {% endif %}
                         </div>
                         <hr/>
-                        <div class="compare_os">            <!-- WINDOWS 버전 비교 /  XP<Vista<7<8<10 -->
+                        <div>            <!-- WINDOWS 버전 비교 /  XP<Vista<7<8<10 -->
                             {% if cadinfo.osversion %}
                                 {% if cadinfo.osversion == 'XP' %}
                                 <div class="card-text text-primary">OS : OK!!!</div>
@@ -118,7 +121,7 @@
                             {% endif %}
                         </div>
                         <hr/>
-                        <div class="compare_disk">          <!-- FREE DISK SPACE 용량 비교 -->
+                        <div>          <!-- FREE DISK SPACE 용량 비교 -->
                             {% if cadinfo.diskspace %}
                                 {% if user_pcinfo.cdisk >= cadinfo.diskspace %}
                                 <div class="card-text text-primary">C_disk : OK!!!</div>

@@ -16,7 +16,7 @@
                         {% endif %}
 
                         <div class="card-text">RAM(GB) : {{ questioner_pcinfo.ram }}</div>
-                        <div class="card-text">Windows OS : {{ questioner_pcinfo.fullos }}</div>
+                        <div class="card-text">OS : Windows {{ questioner_pcinfo.fullos }}</div>
                     </div>
                 </div>
             </div>
@@ -28,7 +28,10 @@
                     <div class="card-body">
                         <div class="card-text">CPU : {{ user_pcinfo.cpu }}</div>
                         <div class="card-text">VIDEOCARD1 : {{ user_pcinfo.graphic1 }}</div>
-                        <div class="card-text">VIDEOCARD2 : {{ user_pcinfo.graphic2 }}</div>
+                        {% if user_pcinfo.graphic2 %}
+                            <div class="card-text">VIDEOCARD2 : {{ user_pcinfo.graphic2 }}</div>
+                        {% endif %}
+
                         <div class="card-text">RAM(GB) : {{ user_pcinfo.ram }}</div>
                         <div class="card-text">OS : Windows {{ user_pcinfo.fullos }}</div>
                         <div class="card-text">FREE DISK SPACE(MB) : C: {{ user_pcinfo.cdisk }} | D: {{ user_pcinfo.ddisk }} | E: {{ user_pcinfo.edisk }} | F: {{ user_pcinfo.fdisk }}</div>
@@ -41,7 +44,7 @@
             <div class="col-11">
                 <div class="card">
                     <div class="card-body">
-                        <div class="compare_cpu">           <!-- CPU 비교 -->
+                        <div>           <!-- CPU 비교 -->
                             {% if questioner_cpu.score %}
                                 {% if user_cpu.score >= questioner_cpu.score %}
                                 <div class="card-text text-primary">CPU : Your cpu is Better! / Your CPU score : {{ user_cpu.score }} /
@@ -55,7 +58,7 @@
                             {% endif %}
                         </div>
                         <hr/>
-                        <div class="compare_video">         <!-- 그래픽카드 비교 -->
+                        <div>         <!-- 그래픽카드 비교 -->
                             {% if questioner_video.score %}
                                 {% if user_video.score >= questioner_video.score %}
                                 <div class="card-text text-primary">VIDEOCARD : Your Graphic is Better! / Your Graphic score : {{ user_video.score }} /
@@ -69,7 +72,7 @@
                             {% endif %}
                         </div>
                         <hr/>
-                        <div class="compare_ram">           <!-- RAM 비교 -->
+                        <div>           <!-- RAM 비교 -->
                             {% if questioner_pcinfo.ram %}
                                 {% if user_pcinfo.ram >= questioner_pcinfo.ram %}
                                 <div class="card-text text-primary">RAM : Your RAM is Better!</div>
@@ -81,7 +84,7 @@
                             {% endif %}
                         </div>
                         <hr/>
-                        <div class="compare_os">            <!-- WINDOWS 버전 비교 /  XP<Vista<7<8<10 -->
+                        <div>            <!-- WINDOWS 버전 비교 /  XP<Vista<7<8<10 -->
                             {% if questioner_pcinfo.os %}
                                 {% if questioner_pcinfo.os == 'XP' %}
                                 <div class="card-text text-primary">OS : Your OS is Better!</div>
@@ -121,7 +124,7 @@
                             {% endif %}
                         </div>
                         <hr/>
-                        <div class="diskspace">
+                        <div>            <!-- 디스크 사용 가능 공간은 비교하지 않음 -->
                             <div class="card-text text-primary">Please check the disk space individually.</div>
                         </div>
                     </div>

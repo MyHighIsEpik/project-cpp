@@ -85,49 +85,56 @@ def download():
                      as_attachment=True,
                      attachment_filename='CPP.exe')
 
-#사양비교
-
+# 사양비교
 
 @bp.route('/cad_list/detail/<int:cad_id>/compare/')
 @login_required
 def cad_compare(cad_id):
+    # 프로그램 사양
     cadinfo = Cadinfo.query.get_or_404(cad_id)
-    user_pcinfo = User_pcinfo.query.filter_by(codenum=g.user.codenum).first()
     cadcpu = Cpulist.query.filter_by(cpuname=cadinfo.cpu).first()
+    cadvideo = Videocard.query.filter_by(vcname=cadinfo.videocard).first()
+    # 현재 사용자
+    user_pcinfo = User_pcinfo.query.filter_by(codenum=g.user.codenum).first()
     usercpu = Cpulist.query.filter_by(cpuname=user_pcinfo.cpu).first()
     uservideo = Videocard.query.filter_by(vcname=user_pcinfo.graphic1).first()
-    cadvideo = Videocard.query.filter_by(vcname=cadinfo.videocard).first()
 
     return render_template('program/cad_compare.html', \
-                           cadinfo=cadinfo, user_pcinfo=user_pcinfo, cadcpu=cadcpu, usercpu=usercpu, uservideo=uservideo, \
-                            cadvideo=cadvideo)
+                           cadinfo=cadinfo, cadcpu=cadcpu, cadvideo=cadvideo, \
+                           user_pcinfo=user_pcinfo, usercpu=usercpu, uservideo=uservideo)
+
+
+@bp.route('/game_list/detail/<int:game_id>/compare/')
+@login_required
+def game_compare(game_id):
+    # 프로그램 사양
+    gameinfo = Gameinfo.query.get_or_404(game_id)
+    gamecpu = Cpulist.query.filter_by(cpuname=gameinfo.cpu).first()
+    gamevideo = Videocard.query.filter_by(vcname=gameinfo.videocard).first()
+    # 현재 사용자
+    user_pcinfo = User_pcinfo.query.filter_by(codenum=g.user.codenum).first()
+    usercpu = Cpulist.query.filter_by(cpuname=user_pcinfo.cpu).first()
+    uservideo = Videocard.query.filter_by(vcname=user_pcinfo.graphic1).first()
+
+    return render_template('program/game_compare.html', \
+                           gameinfo=gameinfo, gamecpu=gamecpu, gamevideo=gamevideo, \
+                           user_pcinfo=user_pcinfo, usercpu=usercpu, uservideo=uservideo)
 
 
 @bp.route('/illust_list/detail/<int:illust_id>/compare/')
 @login_required
 def illust_compare(illust_id):
+    # 프로그램 사양
     illustinfo = Illustinfo.query.get_or_404(illust_id)
-    user_pcinfo = User_pcinfo.query.filter_by(codenum=g.user.codenum).first()
     illustcpu = Cpulist.query.filter_by(cpuname=illustinfo.cpu).first()
+    illustvideo = Videocard.query.filter_by(vcname=illustinfo.videocard).first()
+    # 현재 사용자
+    user_pcinfo = User_pcinfo.query.filter_by(codenum=g.user.codenum).first()
     usercpu = Cpulist.query.filter_by(cpuname=user_pcinfo.cpu).first()
     uservideo = Videocard.query.filter_by(vcname=user_pcinfo.graphic1).first()
-    illustvideo = Videocard.query.filter_by(vcname=illustinfo.videocard).first()
 
     return render_template('program/illust_compare.html', \
-                           illustinfo=illustinfo, user_pcinfo=user_pcinfo, illustcpu=illustcpu, usercpu=usercpu, uservideo=uservideo, \
-                            illustvideo=illustvideo)
+                           illustinfo=illustinfo, illustvideo=illustvideo, illustcpu=illustcpu, \
+                           user_pcinfo=user_pcinfo, usercpu=usercpu, uservideo=uservideo)
 
-@bp.route('/game_list/detail/<int:game_id>/compare/')
-@login_required
-def game_compare(game_id):
-    gameinfo = Gameinfo.query.get_or_404(game_id)
-    user_pcinfo = User_pcinfo.query.filter_by(codenum=g.user.codenum).first()
-    gamecpu = Cpulist.query.filter_by(cpuname=gameinfo.cpu).first()
-    usercpu = Cpulist.query.filter_by(cpuname=user_pcinfo.cpu).first()
-    uservideo = Videocard.query.filter_by(vcname=user_pcinfo.graphic1).first()
-    gamevideo = Videocard.query.filter_by(vcname=gameinfo.videocard).first()
-
-    return render_template('program/game_compare.html', \
-                           gameinfo=gameinfo, user_pcinfo=user_pcinfo, gamecpu=gamecpu, usercpu=usercpu, uservideo=uservideo, \
-                            gamevideo=gamevideo)
 
