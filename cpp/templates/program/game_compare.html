@@ -55,8 +55,8 @@
                             {% endif %}
                         </div>
                         <hr/>
-                        <div>
-                            {% if gamevideo.score %}
+                        <div>         <!-- 그래픽카드 비교 -->
+                            {% if (gamevideo.score) and (uservideo.score) %}         <!-- 프로그램 videocard 사양이 있을 때 -->
                                 {% if uservideo.score >= gamevideo.score %}
                                 <div class="card-text text-primary">VIDEOCARD : OK!!! / uservideo score : {{ uservideo.score }} /
                                 game score : {{ gamevideo.score }}</div>
@@ -64,9 +64,12 @@
                                 <div class="card-text text-danger">VIDEOCARD : NO!!! / uservideo score : {{ uservideo.score }} /
                                 game score : {{ gamevideo.score }}</div>
                                 {% endif %}
+                            {% elif (uservideo.score == NONE) and (gamevideo.score) %}                      <!-- 프로그램 videocard 사양이 비었을 때 -->
+                                <div class="card-text text-danger">YOUR VideoCard is not in our database!</div>
+                            {% elif (gamevideo.score == NONE) and (uservideo.score) %}
+                                <div class="card-text text-primary">VIDEOCARD : OK!!!</div>
                             {% else %}
-                                <div class="card-text text-primary">VIDEOCARD : OK!!! / uservideo score : {{ uservideo.score }} /
-                                gamevideo score : {{ gamevideo.score }}</div>
+                                <div class="card-text text-primary">VIDEOCARD : OK!!!</div>
                             {% endif %}
                         </div>
                         <hr/>

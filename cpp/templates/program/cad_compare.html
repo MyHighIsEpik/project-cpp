@@ -45,10 +45,10 @@
                             {% if cadcpu != None %}         <!-- 프로그램 cpu 사양이 있을 때 -->
                                 {% if usercpu.score >= cadcpu.score %}
                                 <div class="card-text text-primary">CPU : OK!!! / usercpu score : {{ usercpu.score }} /
-                                    cadcpu score : {{ cadcpu.score }}</div>
+                                    cad score : {{ cadcpu.score }}</div>
                                 {% else %}
                                 <div class="card-text text-danger">CPU : NO!!! / usercpu score : {{ usercpu.score }} /
-                                    cadcpu score : {{ cadcpu.score }}</div>
+                                    cad score : {{ cadcpu.score }}</div>
                                 {% endif %}
                             {% else %}                      <!-- 프로그램 cpu 사양이 비었을 때 -->
                                 <div class="card-text text-primary">CPU : OK!!!</div>
@@ -56,7 +56,7 @@
                         </div>
                         <hr/>
                         <div>         <!-- 그래픽카드 비교 -->
-                            {% if cadvideo.score %}         <!-- 프로그램 videocard 사양이 있을 때 -->
+                            {% if (cadvideo.score) and (uservideo.score) %}         <!-- 프로그램 videocard 사양이 있을 때 -->
                                 {% if uservideo.score >= cadvideo.score %}
                                 <div class="card-text text-primary">VIDEOCARD : OK!!! / uservideo score : {{ uservideo.score }} /
                                 cad score : {{ cadvideo.score }}</div>
@@ -64,7 +64,11 @@
                                 <div class="card-text text-danger">VIDEOCARD : NO!!! / uservideo score : {{ uservideo.score }} /
                                 cad score : {{ cadvideo.score }}</div>
                                 {% endif %}
-                            {% else %}                      <!-- 프로그램 videocard 사양이 비었을 때 -->
+                            {% elif (uservideo.score == NONE) and (cadvideo.score) %}                      <!-- 프로그램 videocard 사양이 비었을 때 -->
+                                <div class="card-text text-danger">YOUR VideoCard is not in our database!</div>
+                            {% elif (cadvideo.score == NONE) and (uservideo.score) %}
+                                <div class="card-text text-primary">VIDEOCARD : OK!!!</div>
+                            {% else %}
                                 <div class="card-text text-primary">VIDEOCARD : OK!!!</div>
                             {% endif %}
                         </div>
