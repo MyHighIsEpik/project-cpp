@@ -59,16 +59,20 @@
                         </div>
                         <hr/>
                         <div>         <!-- 그래픽카드 비교 -->
-                            {% if questioner_video.score %}
+                            {% if (questioner_video.score) and (user_video.score) %}
                                 {% if user_video.score >= questioner_video.score %}
                                 <div class="card-text text-primary">VIDEOCARD : Your Graphic is Better! / Your Graphic score : {{ user_video.score }} /
                                 Questioner Graphic score : {{ questioner_video.score }}</div>
                                 {% else %}
                                 <div class="card-text text-danger">VIDEOCARD : Your Graphic is Lower / Your Graphic Card score : {{ user_video.score }} /
-                                questioner Graphic Card score : {{ questioner_video.score }}</div>
+                                Questioner Graphic Card score : {{ questioner_video.score }}</div>
                                 {% endif %}
+                            {% elif (user_video.score == NONE) and (questioner_video.score) %}
+                                <div class="card-text text-primary">YOUR VideoCard is not in our database!</div>
+                            {% elif (questioner_video.score == NONE) and (user_video.score) %}
+                                <div class="card-text text-primary">VIDEOCARD : OK!!!</div>
                             {% else %}
-                                <div class="card-text text-primary">Questioner doesn't have Graphic Card!!</div>
+                                <div class="card-text text-primary">VIDEOCARD : OK!!!</div>
                             {% endif %}
                         </div>
                         <hr/>
