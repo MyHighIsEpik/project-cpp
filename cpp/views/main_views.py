@@ -2,7 +2,7 @@ from flask import Blueprint, url_for, render_template, flash, request, session, 
 from werkzeug.utils import redirect
 from ..forms import UserLoginForm
 from werkzeug.security import check_password_hash
-from ..models import User, Question, Answer, question_voter
+from ..models import User, User_pcinfo, Question, Answer, question_voter
 from ..views.auth_views import login_required
 from sqlalchemy import func
 from .. import db
@@ -36,7 +36,7 @@ def main():
 @bp.route('/homepage/')
 @login_required
 def homepage():
-
+    user_pcinfo = User_pcinfo.query.filter_by(codenum=g.user.codenum).first()
 
     # 정렬
     # 추천많은글
@@ -55,4 +55,4 @@ def homepage():
     question_list3 = Question.query.order_by(Question.create_date.desc())
 
     return render_template('/homepage.html', question_list1=question_list1, question_list2=question_list2, \
-                           question_list3=question_list3)
+                           question_list3=question_list3, user_pcinfo=user_pcinfo)

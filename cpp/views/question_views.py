@@ -115,7 +115,7 @@ def question_compare(question_id):
     user_pcinfo = User_pcinfo.query.filter_by(codenum=g.user.codenum).first()
     user_cpu = Cpulist.query.filter_by(cpuname=user_pcinfo.cpu).first()
     # user_video = Videocard.query.filter_by(vcname=user_pcinfo.graphic1).first()
-    a = '%' + user_pcinfo.graphic1 +'%'
+    a = '%' + user_pcinfo.graphic1 + '%'
     user_video = Videocard.query.filter(Videocard.vcname.like(a)).first()
 
     return render_template('question/question_compare.html', \

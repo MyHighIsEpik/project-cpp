@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
+{% if user_pcinfo.cpu %}
 <section class="py-5 text-center container">
     <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
@@ -105,17 +106,28 @@
             </div>
         </div>
     </div>
-
 </div>
-<form id="searchForm1" method="get" action="{{ url_for('main.homepage') }}">
-    <input type="hidden" id="so1" name="so1" value="recent">
-</form>
-<form id="searchForm2" method="get" action="{{ url_for('main.homepage') }}">
-    <input type="hidden" id="so2" name="so2" value="recommend">
-</form>
-<form id="searchForm3" method="get" action="{{ url_for('main.homepage') }}">
-    <input type="hidden" id="so3" name="so3" value="popular">
-</form>
+{% else %}
+<div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-lg-5 py-5">
+        <div class="col-md-10 mx-auto col-lg-5">
+            <div class="p-4 p-md-5 border rounded-3 bg-light">
+                <h3 style="text-align: center;">PC사양을 등록해주세요!</h3>
+                <div class="form-group form-floating mb-3">
+                    <p class="fs-5">웹사이트를 이용하기 위해서는 먼저 PC사양 등록이 필요합니다.<br>아래 버튼을 클릭하여 프로그램을 다운로드 받아주세요.<br>
+                    마이페이지에서 본인의 개인 코드를 확인하여 프로그램에서 PC사양을 등록하는데 사용하시면 됩니다!</p>
+                </div>
+                <div class="checkbox mb-3">
+                </div>
+                <hr class="my-4">
+                <small class="text-muted">PC사양 파악 프로그램 다운로드</small>
+                <a href="{{ url_for('program.download') }}" class="btn btn-secondary">다운로드</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
 {% endblock %}
 {% block script %}
 {% endblock %}
