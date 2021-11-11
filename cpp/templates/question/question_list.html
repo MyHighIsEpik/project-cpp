@@ -96,7 +96,10 @@
             {% endif %}
         </ul>
         <!-- 페이징처리 끝 -->
-        <a href="{{ url_for('question.create') }}" class="btn btn-primary">질문 등록하기</a>
+        <div class="row justify-content-between">
+            <a href="{{ url_for('question.create') }}" class="btn btn-primary col-2">질문 등록하기</a>
+            <a href="{{ url_for('main.homepage') }}" class="btn btn-secondary col-2">&laquo; 메인으로</a>
+        </div>
     </div>
 </div>
 <form id="searchForm" method="get" action="{{ url_for('question._list') }}">

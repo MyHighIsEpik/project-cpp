@@ -9,49 +9,23 @@
     </button>
     <div class="collapse navbar-collapse flex-grow-0 ms-auto" id="navbarNav">
         {% if g.user %}
-            {% if user_pcinfo.cpu %}
-            <ul class="navbar-nav">
-                <li class="nav-item ">
-                    <a class="nav-link" href="{{ url_for('auth.mypage') }}">{{ g.user.username }} 마이페이지</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="{{ url_for('auth.logout') }}">(로그아웃)</a>
-                </li>
-            <ul class="navbar-nav">
-                <li class="nav-item ">
-                    <a class="nav-link" href="{{ url_for('main.homepage') }}">프로그램</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav">
-                <li class="nav-item ">
-                    <a class="nav-link" href="{{ url_for('question._list') }}">정보공유 게시판</a>
-                </li>
-            </ul>
-            </ul>
-            {% else %}
-            <ul class="navbar-nav">
-                <li class="nav-item ">
-                    <a class="nav-link" href="{{ url_for('auth.mypage') }}">{{ g.user.username }} 마이페이지</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="{{ url_for('auth.logout') }}">(로그아웃)</a>
-                </li>
-            <ul class="navbar-nav">
-                <li class="nav-item ">
-                    <a class="nav-link disabled" href="{{ url_for('main.homepage') }}">프로그램</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav">
-                <li class="nav-item ">
-                    <a class="nav-link disabled" href="{{ url_for('question._list') }}">정보공유 게시판</a>
-                </li>
-            </ul>
-            </ul>
-            {% endif %}
-        {% else %}
+        <ul class="navbar-nav">
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ url_for('auth.mypage') }}">{{ g.user.username }} 마이페이지</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ url_for('auth.logout') }}">(로그아웃)</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ url_for('main.homepage') }}">프로그램</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ url_for('question._list') }}">정보공유 게시판</a>
+            </li>
+        </ul>
+        {% else %}      <!-- 회원가입을 하지 않은 상태에선 뜨지않도록 함 -->
         <ul class="navbar-nav">
         </ul>
         {% endif %}
-
     </div>
 </nav>
