@@ -18,7 +18,7 @@ def OsInfo():
 # psutil 라이브러리 이용해서 RAM 크기 파악 후 GB로 출력
 def RAMInfo():
     global ram_size
-    ram_size = round(psutil.virtual_memory().total / (10 ** 9))
+    ram_size = round(psutil.virtual_memory().total / (1024 ** 3))
 
     return ram_size
 
