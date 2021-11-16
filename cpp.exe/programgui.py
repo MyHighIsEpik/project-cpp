@@ -19,27 +19,6 @@ conn = pymysql.connect(host='cppdb.cdoxiwetunqp.ap-northeast-2.rds.amazonaws.com
 
 curs = conn.cursor()
 
-sql = "Select * from videocard where vcname like %s"
-grap1 = ['%' + graphic1 + '%']
-curs.execute(sql, grap1)
-a = curs.fetchone()
-score1 = a[2]
-
-
-sql = "Select * from videocard where vcname like %s"
-grap2 = ['%' + graphic2 + '%']
-curs.execute(sql, grap2)
-b = curs.fetchone()
-score2 = b[2]
-
-if score2 != NONE :
-    if score1 < score2 :
-        temp = graphic1
-        graphic1 = graphic2
-        graphic2 = temp
-
-
-
 #신규회원 PC사양 입력
 def insertcode():
     input_codenum1 = edt1.get()
@@ -48,7 +27,6 @@ def insertcode():
         curs.execute(
             "INSERT INTO user (codenum) VALUES (%s)", (input_codenum1)
         )
-        
     except :        #입력받은 코드 값이 있을 경우 try에서의 insert문은 실행이 안 됨
         try :    
             curs.execute(
@@ -98,7 +76,7 @@ def auth():
     else: 
         messagebox.showinfo('정보','업데이트를 취소했습니다')
 
-#랜덤코드 확인하기 눌렀을때 뜨는 창
+#개인코드를 모르시나요? 눌렀을때 뜨는 창
 def callback():
     messagebox.showinfo('정보', '웹사이트 마이페이지를 확인해주세요')
 
@@ -109,7 +87,7 @@ edtFrame = Frame(root);
 edtFrame.pack()
 edt1 = Entry(edtFrame, width = 50)
 edt1.pack()
-b2 = tk.Button(root, text = '랜덤코드 확인하기', command=callback, padx=5, pady=5)
+b2 = tk.Button(root, text = '개인코드를 모르시나요?', command=callback, padx=5, pady=5)
 b2.pack()
 b1 = tk.Button(edtFrame, text = 'PC 정보 등록하기(신규회원)', command=insertcode, padx=5, pady=5)
 b1.pack(side="left", fill='y')

@@ -6,7 +6,7 @@ from sqlalchemy import func
 from .. import db
 from ..forms import QuestionForm, AnswerForm
 from ..models import Question, Answer, User, question_voter, User_pcinfo, Cpulist, Videocard
-from cpp.views.auth_views import login_required
+from .auth_views import login_required
 
 bp = Blueprint('question', __name__, url_prefix='/question')
 
@@ -59,6 +59,9 @@ def _list():
 def detail(question_id):
     form = AnswerForm()
     question = Question.query.get_or_404(question_id)
+
+    # answer = Answer.query.filter_by(question_id=question.id).first()
+    # answerer = User.query.filter_by(id=answer.user_id).first()
     return render_template('question/question_detail.html', question=question, form=form)
 
 @bp.route('/create/', methods=('GET', 'POST'))
@@ -114,12 +117,11 @@ def question_compare(question_id):
     # 현재 사용자
     user_pcinfo = User_pcinfo.query.filter_by(codenum=g.user.codenum).first()
     user_cpu = Cpulist.query.filter_by(cpuname=user_pcinfo.cpu).first()
-    # user_video = Videocard.query.filter_by(vcname=user_pcinfo.graphic1).first()
     a = '%' + user_pcinfo.graphic1 + '%'
     user_video = Videocard.query.filter(Videocard.vcname.like(a)).first()
 
     return render_template('question/question_compare.html', \
                            questioner_pcinfo=questioner_pcinfo, questioner_cpu=questioner_cpu, \
-                           questioner_video=questioner_video, user_pcinfo=user_pcinfo, user_cpu=user_cpu,  \
+                           questioner_video=questioner_video, user_pcinfo=user_pcinfo, user_cpu=user_cpu, \
                            user_video=user_video)
 
