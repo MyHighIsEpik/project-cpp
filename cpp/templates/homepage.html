@@ -15,8 +15,10 @@
     <!-- google icon CSS -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <title>CPP</title>
+
 </head>
 <body>
+
     {% if user_pcinfo.cpu %}            <!-- PC사양 파악 프로그램을 이용하여 DB에 사양을 넣었을 경우 -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
         <a class="navbar-brand" href="{{ url_for('main.homepage') }}">
@@ -52,7 +54,7 @@
     <section class="py-5 text-center container">
         <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-light">CPP에 오신 것을 환영합니다.</h1>
+                <h1>CPP에 오신것을 환영합니다</h1>
                 <p class="lead text-muted">사용하고자 하는 프로그램과의 사양 비교를 하거나 다른 사용자들과 의견을 나눠보세요!</p>
                 <p>
                 <a href="#main1" class="btn btn-secondary my-2 scrolly">프로그램</a>
@@ -62,7 +64,7 @@
         </div>
         <div class="overflow-hidden" style="max-height: 70vh;">
             <div class="container px-5">
-                <img src="../static/images/cppmain.png" class="img-fluid border rounded-3 shadow-lg mb-4" alt="Example image" width="700" height="500" loading="lazy">
+                <img src="../static/images/cppmain2.png" class="img-fluid border rounded-3 shadow-lg mb-4" alt="Example image" width="700" height="500" loading="lazy">
             </div>
         </div>
     </section>
@@ -75,6 +77,7 @@
                 <a style="color : black; text-decoration : none;" href="{{ url_for('program.program') }}">프로그램 사양 비교 &raquo;</a>
             </h1>
             <p class="fs-5 text-muted">원하는 카테고리를 고르고 프로그램을 선택해주세요.</p>
+            <br><br>
             <div class="row">
                 <div class="col-lg-4">
                     <img class="bd-placeholder-img rounded-circle" width="300" height="300" src="../static/images/CAD.jpg"></img>
@@ -104,11 +107,12 @@
         <hr class="featurette-divider">
 
     <div id="main2" class="container marketing py-3">
-        <div class="p-3 pb-md-4 mx-auto text-center">
+        <div class="p-3 pb-md-5 mx-auto text-center">
             <h1 class="display-4 fw-normal">
                 <a style="color : black; text-decoration : none;" href="{{ url_for('question._list') }}">정보공유 게시판 &raquo;</a>
             </h1>
             <p class="fs-5 text-muted">다양한 사양의 PC를 가진 사용자들과 의견을 나눠 보세요.</p>
+            <br>
         </div>
 
         <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
@@ -159,6 +163,8 @@
             </div>
         </div>
     </div>
+    <br>
+    <br><br><br>
 
     {% else %}                          <!-- PC사양 파악 프로그램을 이용하여 DB에 사양을 넣지 않았을 경우 -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
