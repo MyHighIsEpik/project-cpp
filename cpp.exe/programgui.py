@@ -2,13 +2,13 @@ from tkinter import*
 import tkinter as tk
 import pymysql
 from tkinter import messagebox
-from checkinfo import OsInfo, DiskInfo, RAMInfo, CPUInfo, VideoInfo, VideoInfo2
+from checkinfo import OsInfo, DiskInfo, RAMInfo, CPUInfo, VideoInfo, VideoInfo1
 os, fullos = OsInfo()
 disk = DiskInfo()
 ram = RAMInfo()
 cpu = CPUInfo()
 graphic1 = VideoInfo()
-graphic2 = VideoInfo2()
+graphic2 = VideoInfo1()
 
 root = tk.Tk()
 root.title("CPP")
@@ -33,7 +33,7 @@ def insertcode():
                 "INSERT INTO user_pcinfo (codenum, cpu, graphic1, graphic2, fullos, os, ram, cdisk, ddisk, edisk, fdisk) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (input_codenum1, cpu, graphic1, graphic2, fullos, os, ram, disk[0], disk[1], disk[2], disk[3]))
 
         except :
-            messagebox.showerror('오류', '이미 존재하는 코드입니다!')
+            messagebox.showerror('오류', '코드가 잘못 되었거나 아직 회원가입을 하지않은 상태입니다.')
 
         else :
             messagebox.showinfo('성공', '데이터 입력 성공')
@@ -59,7 +59,7 @@ def updatecode():
             curs.connection.commit()
 
         except :
-            messagebox.showerror('오류', '이미 존재하는 코드입니다!')
+            messagebox.showerror('오류', '코드가 잘못 되었거나 아직 회원가입을 하지않은 상태입니다.')
 
         else :
             
@@ -81,7 +81,7 @@ def callback():
     messagebox.showinfo('정보', '웹사이트 마이페이지를 확인해주세요')
 
 
-label = tk.Label(root, text = 'CPP 회원가입시 받은 랜덤코드를 입력해주세요', fg="Blue", font=("돋움체", 12, "bold"))
+label = tk.Label(root, text = 'CPP 회원가입시 받은 개인코드를 입력해주세요', fg="Blue", font=("돋움체", 12, "bold"))
 label.pack()
 edtFrame = Frame(root);
 edtFrame.pack()

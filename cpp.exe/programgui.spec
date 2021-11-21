@@ -5,11 +5,12 @@ block_cipher = None
 
 
 a = Analysis(['programgui.py'],
-             pathex=['C:\\Users\\admin\\Desktop\\PythonWorkSpace\\flask\\projects\\myproject\\cpp.exe'],
+             pathex=['G:\\projects\\myproject1\\cpp.exe'],
              binaries=[],
              datas=[],
              hiddenimports=[],
              hookspath=[],
+             hooksconfig={},
              runtime_hooks=[],
              excludes=[],
              win_no_prefer_redirects=False,
@@ -18,11 +19,12 @@ a = Analysis(['programgui.py'],
              noarchive=False)
 pyz = PYZ(a.pure, a.zipped_data,
              cipher=block_cipher)
+
 exe = EXE(pyz,
           a.scripts,
           a.binaries,
           a.zipfiles,
-          a.datas,
+          a.datas,  
           [],
           name='programgui',
           debug=False,
@@ -31,4 +33,7 @@ exe = EXE(pyz,
           upx=True,
           upx_exclude=[],
           runtime_tmpdir=None,
-          console=True )
+          console=True,
+          target_arch=None,
+          codesign_identity=None,
+          entitlements_file=None , icon='icons\\cpp.ico')
