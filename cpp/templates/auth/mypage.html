@@ -37,7 +37,7 @@
                     <a class="nav-link" href="{{ url_for('auth.logout') }}">(로그아웃)</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" href="{{ url_for('main.homepage') }}">프로그램</a>
+                    <a class="nav-link" href="{{ url_for('mprogram.program') }}">프로그램</a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link" href="{{ url_for('question._list') }}">정보공유 게시판</a>
@@ -100,7 +100,7 @@
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse flex-grow-0 ms-auto" id="navbarNav">
+        <div class="collapse navbar-collapse flex-grow-0 ms-auto">
             {% if g.user %}
             <ul class="navbar-nav">
                 <li class="nav-item ">
@@ -110,7 +110,7 @@
                     <a class="nav-link" href="{{ url_for('auth.logout') }}">(로그아웃)</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link disabled" href="{{ url_for('main.homepage') }}">프로그램</a>
+                    <a class="nav-link disabled" href="{{ url_for('program.program') }}">프로그램</a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link disabled" href="{{ url_for('question._list') }}">정보공유 게시판</a>
