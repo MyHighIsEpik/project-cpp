@@ -4,19 +4,19 @@
 <div class="container my-3">
     <div class="col-8 mx-auto">
         <h1 class="border-bottom py-2">사용자 간 사양 비교</h1>
-        <h2 class="border-bottom py-2">게시물 작성자 {{ questioner.nickname }}</h2>
+        <h2 class="border-bottom py-2">답변 작성자</h2>
         <div class="row my-3">
             <div class="col-11">
                 <div class="card">
                     <div class="card-body">
-                        <div class="card-text">CPU : {{ questioner_pcinfo.cpu }}</div>
-                        <div class="card-text">VIDEOCARD1 : {{ questioner_pcinfo.graphic1 }}</div>
-                        {% if questioner_pcinfo.graphic2 %}
-                            <div class="card-text">VIDEOCARD2 : {{ questioner_pcinfo.graphic2 }}</div>
+                        <div class="card-text">CPU : {{ answerer_pcinfo.cpu }}</div>
+                        <div class="card-text">VIDEOCARD1 : {{ answerer_pcinfo.graphic1 }}</div>
+                        {% if answerer_pcinfo.graphic2 %}
+                            <div class="card-text">VIDEOCARD2 : {{ answerer_pcinfo.graphic2 }}</div>
                         {% endif %}
 
-                        <div class="card-text">RAM(GB) : {{ questioner_pcinfo.ram }}</div>
-                        <div class="card-text">Windows OS : {{ questioner_pcinfo.fullos }}</div>
+                        <div class="card-text">RAM(GB) : {{ answerer_pcinfo.ram }}</div>
+                        <div class="card-text">Windows OS : {{ answerer_pcinfo.fullos }}</div>
                     </div>
                 </div>
             </div>
@@ -44,87 +44,87 @@
             <div class="col-11">
                 <div class="card">
                     <div class="card-body">
-                        <div>               <!-- CPU 비교 -->
-                            {% if questioner_cpu.score %}
-                                {% if user_cpu.score > questioner_cpu.score %}
+                        <div>           <!-- CPU 비교 -->
+                            {% if answerer_cpu.score %}
+                                {% if user_cpu.score > answerer_cpu.score %}
                                     <div class="card-text text-primary">CPU : Your CPU is Better! / Your CPU score : {{ user_cpu.score }} /
-                                    Questioner's CPU score : {{ questioner_cpu.score }}</div>
+                                    Answerer's CPU score : {{ answerer_cpu.score }}</div>
                                 {% elif user_cpu.score == questioner_cpu.score %}
                                     <div class="card-text text-primary">CPU : Each other's CPU score is same! / Your CPU score : {{ user_cpu.score }} /
-                                    Questioner's CPU score : {{ questioner_cpu.score }}</div>
+                                    Answerer's CPU score : {{ Answerer_cpu.score }}</div>
                                 {% else %}
                                     <div class="card-text text-danger">CPU : Your CPU is Worse! / Your CPU score : {{ user_cpu.score }} /
-                                    Questioner's CPU score : {{ questioner_cpu.score }}</div>
+                                    Answerer's CPU score : {{ answerer_cpu.score }}</div>
                                 {% endif %}
                             {% else %}
-                                <div class="card-text text-primary"> Questioner doesn't have CPU!! </div>
+                                <div class="card-text text-primary"> Answerer doesn't have CPU!! </div>
                             {% endif %}
                         </div>
                         <hr/>
-                        <div>               <!-- 그래픽카드 비교 -->
-                            {% if (questioner_video.score) and (user_video.score) %}            <!-- 질문자와 현사용자의 그래픽카드 사양이 둘다 DB에 있을 경우 -->
-                                {% if user_video.score > questioner_video.score %}
+                        <div>         <!-- 그래픽카드 비교 -->
+                            {% if (answerer_video.score) and (user_video.score) %}            <!-- 질문자와 현사용자의 그래픽카드 사양이 둘다 DB에 있을 경우 -->
+                                {% if user_video.score > answerer_video.score %}
                                     <div class="card-text text-primary">VIDEOCARD : Your Videocard is Better! / Your Videocard score : {{ user_video.score }} /
-                                    Questioner's Videocard score : {{ questioner_video.score }}</div>
+                                    Answerer's Videocard score : {{ answerer_video.score }}</div>
                                 {% elif user_video.score == questioner_video.score %}
                                     <div class="card-text text-primary">VIDEOCARD : Each other's Videocard score is same! / Your Videocard score : {{ user_video.score }} /
-                                    Questioner's Videocard score : {{ questioner_video.score }}</div>
+                                    Answerer's Videocard score : {{ answerer_video.score }}</div>
                                 {% else %}
                                     <div class="card-text text-danger">VIDEOCARD : Your Videocard is Worse! / Your Videocard score : {{ user_video.score }} /
-                                    Questioner's Videocard score : {{ questioner_video.score }}</div>
+                                    Answerer's Videocard score : {{ answerer_video.score }}</div>
                                 {% endif %}
-                            {% elif (user_video.score == NONE) and (questioner_video.score) %}  <!-- 현사용자의 그래픽카드 사양이 DB에 없을 경우 -->
-                                <div class="card-text text-primary">Your VideoCard is not in our database!</div>
-                            {% elif (questioner_video.score == NONE) and (user_video.score) %}  <!-- 질문자의 그래픽카드 사양이 DB에 없을 경우 -->
+                            {% elif (user_video.score == NONE) and (answerer_video.score) %}  <!-- 현사용자의 그래픽카드 사양이 DB에 없을 경우 -->
+                                <div class="card-text text-primary">YOUR VideoCard is not in our database!</div>
+                            {% elif (answerer_video.score == NONE) and (user_video.score) %} <!-- 질문자의 그래픽카드 사양이 DB에 없을 경우 -->
                                 <div class="card-text text-primary">Questioner's VideoCard is not in our database!</div>
                             {% else %}
                                 <div class="card-text text-primary">VIDEOCARD : OK!!!</div>
                             {% endif %}
                         </div>
                         <hr/>
-                        <div>               <!-- RAM 비교 -->
-                            {% if questioner_pcinfo.ram %}
-                                {% if user_pcinfo.ram > questioner_pcinfo.ram %}
+                        <div>           <!-- RAM 비교 -->
+                            {% if answerer_pcinfo.ram %}
+                                {% if user_pcinfo.ram > answerer_pcinfo.ram %}
                                     <div class="card-text text-primary">RAM : Your RAM size is Bigger!</div>
-                                {% elif user_pcinfo.ram == questioner_pcinfo.ram %}
+                                {% elif user_pcinfo.ram == answerer_pcinfo.ram %}
                                     <div class="card-text text-primary">RAM : Each other's RAM size is same!</div>
                                 {% else %}
                                     <div class="card-text text-danger">RAM : Your RAM size is Smaller!</div>
                                 {% endif %}
                             {% else %}
-                                <div class="card-text text-primary">Questioner doesn't have RAM!</div>
+                                <div class="card-text text-primary">Answerer doesn't have RAM!</div>
                             {% endif %}
                         </div>
                         <hr/>
-                        <div>               <!-- WINDOWS 버전 비교 /  XP<Vista<7<8<10 -->
-                            {% if questioner_pcinfo.os %}
-                                {% if questioner_pcinfo.os == 'XP' %}
+                        <div>            <!-- WINDOWS 버전 비교 /  XP<Vista<7<8<10 -->
+                            {% if answerer_pcinfo.os %}
+                                {% if answerer_pcinfo.os == 'XP' %}
                                     <div class="card-text text-primary">OS : Your OS is Higher!</div>
-                                {% elif questioner_pcinfo.os == 'Vista' %}
+                                {% elif answerer_pcinfo.os == 'Vista' %}
                                     {% if user_pcinfo.os == 'XP' %}
                                         <div class="card-text text-danger">OS : Your OS is Lower!</div>
                                     {% else %}
                                         <div class="card-text text-primary">OS : Your OS is Higher!</div>
                                     {% endif %}
-                                {% elif questioner_pcinfo.os == '7' %}
+                                {% elif answerer_pcinfo.os == '7' %}
                                     {% if ((user_pcinfo.os == 'Vista') or (user_pcinfo.os == 'XP')) %}
                                         <div class="card-text text-danger">OS : Your OS is Lower!</div>
                                     {% else %}
                                         <div class="card-text text-primary">OS : Your OS is Higher!</div>
                                     {% endif %}
-                                {% elif questioner_pcinfo.os == '8' %}
+                                {% elif answerer_pcinfo.os == '8' %}
                                     {% if ((user_pcinfo.os == 'Vista') or (user_pcinfo.os == 'XP') or (user_pcinfo.os == '7')) %}
                                         <div class="card-text text-danger">OS : Your OS is Lower!</div>
                                     {% else %}
                                         <div class="card-text text-primary">OS : Your OS is Higher!</div>
                                     {% endif %}
-                                {% elif questioner_pcinfo.os == '9' %}
+                                {% elif answerer_pcinfo.os == '9' %}
                                     {% if ((user_pcinfo.os == '9') or (user_pcinfo.os == '10')) %}
                                         <div class="card-text text-primary">OS : Your OS is Higher!</div>
                                     {% else %}
                                         <div class="card-text text-danger">OS : Your OS is Lower!</div>
                                     {% endif %}
-                                {% elif questioner_pcinfo.os == '10' %}
+                                {% elif answerer_pcinfo.os == '10' %}
                                     {% if user_pcinfo.os == '10' %}
                                         <div class="card-text text-primary">OS : Each other's OSversion is same!</div>
                                     {% else %}
@@ -137,7 +137,7 @@
                             {% endif %}
                         </div>
                         <hr/>
-                        <div>               <!-- 디스크 사용 가능 공간은 비교하지 않음 -->
+                        <div>            <!-- 디스크 사용 가능 공간은 비교하지 않음 -->
                             <div class="card-text text-primary">Please check the disk space individually.</div>
                         </div>
                     </div>
@@ -146,6 +146,8 @@
        </div>
     </div>
 </div>
+
+
 {% endblock %}
 {% block script %}
 

@@ -12,7 +12,7 @@
                         <div class="card-text">CPU : {{ illustinfo.cpu }}</div>
                         <div class="card-text">VIDEOCARD : {{ illustinfo.videocard }}</div>
                         <div class="card-text">RAM(GB) : {{ illustinfo.ram }}</div>
-                        <div class="card-text">OS : Windows {{ illustinfo.osversion }}</div>
+                        <div class="card-text">Windows OS : {{ illustinfo.osversion }}</div>
                         <div class="card-text">FREE DISK SPACE(MB) : {{ illustinfo.diskspace }}</div>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                         {% endif %}
 
                         <div class="card-text">RAM(GB) : {{ user_pcinfo.ram }}</div>
-                        <div class="card-text">OS : Windows {{ user_pcinfo.fullos }}</div>
+                        <div class="card-text">Windows OS : {{ user_pcinfo.fullos }}</div>
                         <div class="card-text">FREE DISK SPACE(MB) : C: {{ user_pcinfo.cdisk }} | D: {{ user_pcinfo.ddisk }} | E: {{ user_pcinfo.edisk }} | F: {{ user_pcinfo.fdisk }}</div>
                     </div>
                 </div>

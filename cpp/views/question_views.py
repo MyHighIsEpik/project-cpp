@@ -120,7 +120,7 @@ def question_compare(question_id):
     a = '%' + user_pcinfo.graphic1 + '%'
     user_video = Videocard.query.filter(Videocard.vcname.like(a)).first()
 
-    return render_template('question/question_compare.html', \
+    return render_template('question/question_compare.html', questioner=questioner, \
                            questioner_pcinfo=questioner_pcinfo, questioner_cpu=questioner_cpu, \
                            questioner_video=questioner_video, user_pcinfo=user_pcinfo, user_cpu=user_cpu, \
                            user_video=user_video)

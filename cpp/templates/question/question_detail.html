@@ -28,23 +28,30 @@
                             </div>
                             {% endif %}
                             <div class="badge badge-light p-2 text-left bg-dark">
-                                <div class="mb-2">{{ question.user.username }}</div>
+                                <div class="mb-2">{{ question.user.nickname }}</div>
                                 <div class="">{{ question.create_date|datetime }}</div>
                             </div>
                         </div>
-                        <!-- PC사양 표시될 곳 -->
-                        <input id="check-btn" type="checkbox" />
-                        <label for="check-btn"><small class="border-bottom my-3 py-2">작성자 PC 사양 >></small></label>
-                        <ul class="menubars">
-                            <small>
-                                <li>CPU : {{ question.user_pcinfo.cpu }}</li>
-                                <li>Videocard : {{ question.user_pcinfo.graphic1 }} / {{ question.user_pcinfo.graphic2 }}</li>
-                                <li>RAM(GB) : {{ question.user_pcinfo.cpu }}</li>
-                                <li>OSversion : {{ question.user_pcinfo.fullos }}</li>
-                                <a href="{{ url_for('question.question_compare', question_id=question.id ) }}" class="btn">내 PC와 비교하기 >></a>
-                            </small>
-                        </ul>   <!-- 작성자 pc사양 표시 -->
+                        <!-- 질문자 PC사양 비교 버튼 표시-->
                         {% if g.user == question.user %}
+                            <!-- 작성자 본인의 답변일 경우 비교 버튼을 표시하지 않음 -->
+                        {% else %}
+                            <button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                작성자 PC 사양 &raquo;
+                            </button>
+                            <div class="collapse" id="collapseExample">
+                                <div class="card card-body">
+                                    <small>
+                                        <p>CPU : {{ question.user_pcinfo.cpu }}</p>
+                                        <p>Videocard : {{ question.user_pcinfo.graphic1 }} / {{ question.user_pcinfo.graphic2 }}</p>
+                                        <p>RAM(GB) : {{ question.user_pcinfo.ram }}</p>
+                                        <p>Windows OSversion : {{ question.user_pcinfo.fullos }}</p>
+                                        <a href="{{ url_for('question.question_compare', question_id=question.id ) }}" class="btn">내 PC와 비교하기 &raquo</a>
+                                    </small>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if g.user == question.user %}      <!-- 작성자 본인의 글일 경우 수정버튼 표시 -->
                         <div class="my-3">
                             <a href="{{ url_for('question.modify', question_id=question.id) }}"
                                 class="btn btn-sm btn-outline-secondary">수정</a>
@@ -60,12 +67,12 @@
                             <div class="comment py-2 text-muted">
                                 <span style="white-space: pre-line;">{{ comment.content }}</span>
                                 <span>
-                                    - {{ comment.user.username }}, {{ comment.create_date|datetime }}
+                                    - {{ comment.user.nickname }}, {{ comment.create_date|datetime }}
                                     {% if comment.modify_date %}
                                     (수정:{{ comment.modify_date|datetime }})
                                     {% endif %}
                                 </span>
-                                {% if g.user == comment.user %}
+                                {% if g.user == comment.user %}      <!-- 작성자 본인의 글일 경우 수정버튼 표시 -->
                                 <a href="{{ url_for('comment.modify_question', comment_id=comment.id) }}" class="small">수정</a>,
                                 <a href="#" class="small delete"
                                 data-uri="{{ url_for('comment.delete_question', comment_id=comment.id) }}">삭제</a>
@@ -105,12 +112,19 @@
                             </div>
                             {% endif %}
                             <div class="badge badge-light p-2 text-left bg-dark">
-                                <div class="mb-2">{{ answer.user.username }}</div>
+                                <div class="mb-2">{{ answer.user.nickname }}</div>      <!-- 답변 작성자 표시 -->
                                 <div>{{ answer.create_date|datetime }}</div>
                             </div>
                         </div>
-
+                        <!-- 답변자 PC사양 비교 버튼 표시-->
                         {% if g.user == answer.user %}
+                            <!-- 작성자 본인의 답변일 경우 비교 버튼을 표시하지 않음 -->
+                        {% else %}
+                            <div class="d-flex justify-content-end">
+                                <a href="{{ url_for('answer.answer_compare', answer_id=answer.id ) }}" class="btn btn-secondary btn-sm my-2 ms-auto">작성자 PC와 내 PC 비교하기</a>
+                            </div>
+                        {% endif %}
+                        {% if g.user == answer.user %}      <!-- 작성자 본인의 글일 경우 수정버튼 표시 -->
                         <div class="my-3">
                             <a href="{{ url_for('answer.modify', answer_id=answer.id) }}"
                                 class="btn btn-sm btn-outline-secondary">수정</a>
