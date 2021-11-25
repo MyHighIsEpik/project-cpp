@@ -49,9 +49,9 @@
                                 {% if user_cpu.score > answerer_cpu.score %}
                                     <div class="card-text text-primary">CPU : Your CPU is Better! / Your CPU score : {{ user_cpu.score }} /
                                     Answerer's CPU score : {{ answerer_cpu.score }}</div>
-                                {% elif user_cpu.score == questioner_cpu.score %}
+                                {% elif user_cpu.score == answerer_cpu.score %}
                                     <div class="card-text text-primary">CPU : Each other's CPU score is same! / Your CPU score : {{ user_cpu.score }} /
-                                    Answerer's CPU score : {{ Answerer_cpu.score }}</div>
+                                    Answerer's CPU score : {{ answerer_cpu.score }}</div>
                                 {% else %}
                                     <div class="card-text text-danger">CPU : Your CPU is Worse! / Your CPU score : {{ user_cpu.score }} /
                                     Answerer's CPU score : {{ answerer_cpu.score }}</div>
@@ -66,7 +66,7 @@
                                 {% if user_video.score > answerer_video.score %}
                                     <div class="card-text text-primary">VIDEOCARD : Your Videocard is Better! / Your Videocard score : {{ user_video.score }} /
                                     Answerer's Videocard score : {{ answerer_video.score }}</div>
-                                {% elif user_video.score == questioner_video.score %}
+                                {% elif user_video.score == answerer_video.score %}
                                     <div class="card-text text-primary">VIDEOCARD : Each other's Videocard score is same! / Your Videocard score : {{ user_video.score }} /
                                     Answerer's Videocard score : {{ answerer_video.score }}</div>
                                 {% else %}
@@ -76,7 +76,7 @@
                             {% elif (user_video.score == NONE) and (answerer_video.score) %}  <!-- 현사용자의 그래픽카드 사양이 DB에 없을 경우 -->
                                 <div class="card-text text-primary">YOUR VideoCard is not in our database!</div>
                             {% elif (answerer_video.score == NONE) and (user_video.score) %} <!-- 질문자의 그래픽카드 사양이 DB에 없을 경우 -->
-                                <div class="card-text text-primary">Questioner's VideoCard is not in our database!</div>
+                                <div class="card-text text-primary">Answerer's VideoCard is not in our database!</div>
                             {% else %}
                                 <div class="card-text text-primary">VIDEOCARD : OK!!!</div>
                             {% endif %}
