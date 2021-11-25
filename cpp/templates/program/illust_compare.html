@@ -43,12 +43,15 @@
                     <div class="card-body">
                         <div>           <!-- CPU 비교 -->
                             {% if illustcpu != None %}         <!-- 프로그램 cpu 사양이 있을 때 -->
-                                {% if usercpu.score >= illustcpu.score %}
-                                <div class="card-text text-primary">CPU : OK!!! / usercpu score : {{ usercpu.score }} /
-                                    illustcpu score : {{ illustcpu.score }}</div>
+                                {% if usercpu.score > illustcpu.score %}
+                                    <div class="card-text text-primary">CPU : OK!!! / Your CPU score : {{ usercpu.score }} /
+                                    Illustrator's CPU score : {{ illustcpu.score }}</div>
+                                {% elif usercpu.score == illustcpu.score %}
+                                    <div class="card-text text-primary">CPU : Each other's CPU score is same! / Your CPU score : {{ usercpu.score }} /
+                                    Illustrator's CPU score : {{ illustcpu.score }}</div>
                                 {% else %}
-                                <div class="card-text text-danger">CPU : NO!!! / usercpu score : {{ usercpu.score }} /
-                                    illustcpu score : {{ illustcpu.score }}</div>
+                                    <div class="card-text text-danger">CPU : NO!!! / Your CPU score : {{ usercpu.score }} /
+                                    Illustrator's CPU score : {{ illustcpu.score }}</div>
                                 {% endif %}
                             {% else %}                      <!-- 프로그램 cpu 사양이 비었을 때 -->
                                 <div class="card-text text-primary">CPU : OK!!!</div>
@@ -75,10 +78,12 @@
                         <hr/>
                         <div>
                             {% if illustinfo.ram %}
-                                {% if user_pcinfo.ram >= illustinfo.ram %}
-                                <div class="card-text text-primary">RAM : OK!!!</div>
+                                {% if user_pcinfo.ram > illustinfo.ram %}
+                                    <div class="card-text text-primary">RAM : OK!!!</div>
+                                {% elif user_pcinfo.ram == illustinfo.ram %}
+                                    <div class="card-text text-primary">RAM : Each other's RAM size is same!</div>
                                 {% else %}
-                                <div class="card-text text-danger">RAM : NO!!!</div>
+                                    <div class="card-text text-danger">RAM : NO!!!</div>
                                 {% endif %}
                             {% else %}
                                 <div class="card-text text-primary">RAM : OK!!!</div>
@@ -88,7 +93,7 @@
                         <div>
                             {% if illustinfo_os %}
                                 {% if illustinfo_os == 'XP' %}
-                                <div class="card-text text-primary">OS : OK!!!</div>
+                                    <div class="card-text text-primary">OS : OK!!!</div>
                                 {% elif illustinfo_os == 'Vista' %}
                                     {% if user_pcinfo.os == 'XP' %}
                                         <div class="card-text text-danger">OS : NO!!!</div>
@@ -128,24 +133,24 @@
                         <div>
                             {% if illustinfo.diskspace %}
                                 {% if user_pcinfo.cdisk >= illustinfo.diskspace %}
-                                <div class="card-text text-primary">C_disk : OK!!!</div>
+                                    <div class="card-text text-primary">C_disk : OK!!!</div>
                                 {% else %}
-                                <div class="card-text text-danger">C_disk : NO!!!</div>
+                                    <div class="card-text text-danger">C_disk : NO!!!</div>
                                 {% endif %}
                                 {% if user_pcinfo.ddisk >= illustinfo.diskspace %}
-                                <div class="card-text text-primary">D_disk : OK!!!</div>
+                                    <div class="card-text text-primary">D_disk : OK!!!</div>
                                 {% else %}
-                                <div class="card-text text-danger">D_disk : NO!!!</div>
+                                    <div class="card-text text-danger">D_disk : NO!!!</div>
                                 {% endif %}
                                 {% if user_pcinfo.edisk >= illustinfo.diskspace %}
-                                <div class="card-text text-primary">E_disk : OK!!!</div>
+                                    <div class="card-text text-primary">E_disk : OK!!!</div>
                                 {% else %}
-                                <div class="card-text text-danger">E_disk : NO!!!</div>
+                                    <div class="card-text text-danger">E_disk : NO!!!</div>
                                 {% endif %}
                                 {% if user_pcinfo.fdisk >= illustinfo.diskspace %}
-                                <div class="card-text text-primary">F_disk : OK!!!</div>
+                                    <div class="card-text text-primary">F_disk : OK!!!</div>
                                 {% else %}
-                                <div class="card-text text-danger">F_disk : NO!!!</div>
+                                    <div class="card-text text-danger">F_disk : NO!!!</div>
                                 {% endif %}
                             {% else %}
                                 <div class="card-text text-primary">ALL_disk : OK!!!</div>
